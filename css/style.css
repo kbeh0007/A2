@@ -222,13 +222,13 @@ body {
 }
 
 .chart-side-image {
-  min-width: 350px;
-  width: 350px;
+  min-width: 280px;
+  width: 280px;
   height: auto;
   object-fit: contain;
   flex-shrink: 0;
   opacity: 0.9;
-  margin-left: -40px
+  margin-left: -65px
 }
 
 /* DIVIDERS */
