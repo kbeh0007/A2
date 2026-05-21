@@ -84,7 +84,7 @@ body {
 /* TYPOGRAPHY */
 .section h2 {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 26px;
+  font-size: 30px;
   font-weight: 600;
   color: #ff1801;
   margin: 0 0 10px 0;
@@ -97,12 +97,17 @@ body {
 
 .section p {
   font-family: 'Barlow', sans-serif;
-  font-size: 15px;
+  font-size: 22px;
   font-weight: 400;
   line-height: 1.7;
   color: #cccccc;
   margin: 0 0 12px 0;
   max-width: 600px;
+}
+
+.col-full p,
+.section > p {
+  max-width: 100%;
 }
 
 .col-grid-text-chart .section-text p,
