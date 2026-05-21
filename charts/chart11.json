@@ -27,8 +27,8 @@
       "mark": {
         "type": "text",
         "align": "center",
-        "baseline": "top",
-        "dy": 8,
+        "baseline": "bottom",
+        "dy": -8,
         "fontSize": 9,
         "color": "#ffd700"
       },
@@ -51,7 +51,7 @@
         "type": "line",
         "color": "#cc0000",
         "strokeWidth": 2.5,
-        "interpolate": "monotone"
+        "point": {"color": "#cc0000", "size": 40, "filled": true}
       },
       "encoding": {
         "x": {
@@ -94,7 +94,7 @@
         "color": "#ffd700",
         "strokeWidth": 2,
         "strokeDash": [5, 3],
-        "interpolate": "monotone"
+        "point": {"color": "#ffd700", "size": 40, "filled": true}
       },
       "encoding": {
         "x": {
