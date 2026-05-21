@@ -213,11 +213,17 @@ body {
 .chart-with-image {
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: 16px;
+  width: 100%;
+}
+
+.chart-with-image > div {
+  flex-shrink: 0;
 }
 
 .chart-side-image {
-  width: 220px;
+  min-width: 200px;
+  width: 200px;
   height: auto;
   object-fit: contain;
   flex-shrink: 0;
