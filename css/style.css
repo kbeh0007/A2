@@ -222,8 +222,8 @@ body {
 }
 
 .chart-side-image {
-  min-width: 240px;
-  width: 240px;
+  min-width: 260px;
+  width: 260px;
   height: auto;
   object-fit: contain;
   flex-shrink: 0;
