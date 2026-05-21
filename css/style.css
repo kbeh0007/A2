@@ -210,6 +210,20 @@ body {
   letter-spacing: 0.3px;
 }
 
+.chart-with-image {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.chart-side-image {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
 /* DIVIDERS */
 .divider {
   border: none;
