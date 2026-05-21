@@ -228,6 +228,7 @@ body {
   object-fit: contain;
   flex-shrink: 0;
   opacity: 0.9;
+  margin-left: -40px
 }
 
 /* DIVIDERS */
