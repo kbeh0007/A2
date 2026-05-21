@@ -13,12 +13,51 @@ body {
   line-height: 1.6;
 }
 
+/* GRID SYSTEM */
+.section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 36px 24px;
+}
+
+.col-full {
+  width: 100%;
+}
+
+.col-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.col-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.col-grid-text-chart {
+  display: grid;
+  grid-template-columns: 4fr 8fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.col-grid-chart-notes {
+  display: grid;
+  grid-template-columns: 8fr 4fr;
+  gap: 32px;
+  align-items: start;
+}
+
 /* HERO */
 .hero {
   background-color: #0d0d1a;
   border-bottom: 3px solid #ff1801;
   color: white;
-  padding: 48px 40px;
+  padding: 52px 40px 48px 40px;
   text-align: center;
 }
 
@@ -27,7 +66,7 @@ body {
   font-size: 56px;
   font-weight: 700;
   color: #ffffff;
-  margin-bottom: 10px;
+  margin: 0 0 10px 0;
   letter-spacing: 3px;
   text-transform: uppercase;
   line-height: 1.1;
@@ -42,20 +81,13 @@ body {
   letter-spacing: 1px;
 }
 
-/* SECTIONS */
-.section {
-  max-width: 1100px;
-  margin: 32px auto;
-  padding: 0 16px;
-}
-
+/* TYPOGRAPHY */
 .section h2 {
   font-family: 'Barlow Condensed', sans-serif;
   font-size: 26px;
   font-weight: 600;
   color: #ff1801;
-  margin-bottom: 10px;
-  margin-top: 0;
+  margin: 0 0 10px 0;
   border-left: 4px solid #ff1801;
   padding-left: 12px;
   line-height: 1.2;
@@ -69,76 +101,36 @@ body {
   font-weight: 400;
   line-height: 1.7;
   color: #cccccc;
-  margin-bottom: 14px;
-  margin-top: 0;
-  max-width: 680px;
+  margin: 0 0 12px 0;
+  max-width: 600px;
 }
 
-/* Hint text — smallest in hierarchy */
+.col-grid-text-chart .section-text p,
+.col-grid-chart-notes .section-notes p {
+  max-width: 100%;
+}
+
 .hint {
   font-family: 'Barlow', sans-serif;
   font-size: 12px;
   font-weight: 300;
   color: #666666;
-  margin-top: 0;
-  margin-bottom: 12px;
+  margin: 0 0 12px 0;
   font-style: italic;
 }
 
-/* Text left, chart right */
-.text-chart-row {
-  display: flex;
-  gap: 32px;
-  align-items: flex-start;
-}
-
-.text-chart-row .text-col {
-  flex: 0 0 300px;
-  min-width: 300px;
-  padding-top: 4px;
-  overflow: visible;
-}
-
-.text-chart-row .chart-col {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  justify-content: flex-start;
-}
-
-/* Two equal columns */
-.two-col-equal {
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-}
-
-.two-col-equal > div {
-  flex: 1;
-  min-width: 0;
-}
-
-/* Two columns centered */
-.two-col-center {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-/* Stat cards */
+/* STAT CARDS */
 .stat-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 10px;
-  margin-bottom: 8px;
+  margin-bottom: 0;
 }
 
 .stat-card {
-  flex: 1;
   background: #141428;
   border: 1px solid #cc0000;
-  border-radius: 8px;
-  padding: 12px 10px;
+  padding: 14px 10px;
   text-align: center;
 }
 
@@ -163,58 +155,48 @@ body {
   letter-spacing: 0.8px;
 }
 
-/* White panel for heatmap — sharp corners */
+/* CHART CONTAINERS */
+
 .chart-panel {
   background: #ffffff;
-  border-radius: 0;
   padding: 16px 16px 8px 16px;
   display: inline-block;
 }
 
-/* Divider */
+.chart-center {
+  display: flex;
+  justify-content: center;
+}
+
+/* DIVIDERS */
 .divider {
   border: none;
   border-top: 1px solid #1a1a2e;
-  margin: 32px auto;
+  margin: 0 auto;
   max-width: 1100px;
 }
 
-/* Winner note box */
+/* WINNER NOTE */
 .winner-note {
   margin-top: 20px;
   padding: 14px 16px;
   border-left: 3px solid #cc0000;
   background: #110010;
-  border-radius: 0 6px 6px 0;
   font-family: 'Barlow', sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.7;
   color: #dddddd;
-  max-width: 280px;
 }
 
-/* Sepang section layout */
-.sepang-row {
-  display: flex;
-  gap: 32px;
-  align-items: flex-start;
-}
-
-.sepang-chart {
-  flex: 0 0 auto;
-}
-
+/* SEPANG NOTES */
 .sepang-notes {
-  flex: 1;
-  padding-top: 12px;
-  min-width: 200px;
+  padding-top: 8px;
 }
 
 .note-item {
   margin-bottom: 18px;
   line-height: 1.6;
-  max-width: 320px;
 }
 
 .note-year {
@@ -236,16 +218,16 @@ body {
   line-height: 1.6;
 }
 
-/* Chart sub-labels */
+/* CHART SUBLABELS */
 .chart-sublabel {
   font-family: 'Barlow', sans-serif;
   font-size: 12px;
   font-weight: 400;
   color: #999999;
-  margin-bottom: 8px;
-  margin-top: 0;
+  margin: 0 0 8px 0;
 }
 
+/* FOOTER */
 footer {
   text-align: center;
   padding: 28px 20px;
@@ -254,6 +236,6 @@ footer {
   font-weight: 300;
   color: #444;
   border-top: 1px solid #1a1a2e;
-  margin-top: 40px;
+  margin-top: 0;
   line-height: 1.8;
 }
