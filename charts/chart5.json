@@ -58,12 +58,13 @@
       "type": "quantitative",
       "scale": {"domain": [1, 100], "scheme": "reds"},
       "legend": {
-        "title": "Race wins",
-        "titleColor": "#333333",
-        "labelColor": "#333333",
-        "orient": "bottom-right",
-        "gradientLength": 120
-      }
+                "title": "Race wins",
+                "titleColor": "#333333",
+                "labelColor": "#333333",
+                "orient": "bottom-right",
+                "gradientLength": 120,
+                "values": [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+              }
     },
     "tooltip": [
       {"field": "name", "title": "Constructor"},
