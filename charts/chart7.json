@@ -1,0 +1,95 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 400,
+  "height": 380,
+  "data": {"url": "../data/results.csv"},
+  "transform": [
+    {"filter": "datum.grid > 0 && datum.positionOrder > 0"},
+    {"filter": "datum.grid <= 20 && datum.positionOrder <= 20"},
+    {
+      "lookup": "raceId",
+      "from": {
+        "data": {"url": "../data/races.csv"},
+        "key": "raceId",
+        "fields": ["year"]
+      }
+    },
+    {"filter": "datum.year >= 2010"},
+    {
+      "aggregate": [{"op": "count", "as": "occurrences"}],
+      "groupby": ["grid", "positionOrder"]
+    }
+  ],
+  "layer": [
+    {
+      "mark": {"type": "line", "strokeDash": [4, 4], "color": "#555577"},
+      "data": {"values": [{"x": 1, "y": 1}, {"x": 20, "y": 20}]},
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative"},
+        "y": {"field": "y", "type": "quantitative"}
+      }
+    },
+    {
+      "mark": {"type": "circle", "opacity": 0.8},
+      "encoding": {
+        "x": {
+          "field": "grid",
+          "type": "quantitative",
+          "title": "Starting grid position",
+          "scale": {"domain": [0, 21]},
+          "axis": {
+            "labelColor": "#aaaaaa",
+            "titleColor": "#aaaaaa",
+            "gridColor": "#1a1a3a"
+          }
+        },
+        "y": {
+          "field": "positionOrder",
+          "type": "quantitative",
+          "title": "Finishing position",
+          "scale": {"domain": [0, 21]},
+          "axis": {
+            "labelColor": "#aaaaaa",
+            "titleColor": "#aaaaaa",
+            "gridColor": "#1a1a3a"
+          }
+        },
+        "size": {
+          "field": "occurrences",
+          "type": "quantitative",
+          "scale": {"range": [10, 500]},
+          "legend": null
+        },
+        "color": {
+          "field": "occurrences",
+          "type": "quantitative",
+          "scale": {"domain": [1, 100], "range": ["#ff9999", "#cc0000"]},
+          "legend": null
+        },
+        "tooltip": [
+          {"field": "grid", "title": "Started from position"},
+          {"field": "positionOrder", "title": "Finished in position"},
+          {"field": "occurrences", "title": "Times this happened"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -2,
+        "dy": -16,
+        "fontSize": 10,
+        "fontWeight": "bold",
+        "color": "#ffd700"
+      },
+      "data": {"values": [{"x": 20, "y": 20}]},
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative"},
+        "y": {"field": "y", "type": "quantitative"},
+        "text": {"value": "Bigger dot = more common outcome"}
+      }
+    }
+  ],
+  "config": {"background": "#0d0d1a", "view": {"stroke": null}}
+}

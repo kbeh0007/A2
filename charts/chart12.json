@@ -1,0 +1,92 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 700,
+  "height": 300,
+  "data": {"url": "../data/results.csv"},
+  "transform": [
+    {"filter": "datum.position == '1'"},
+    {
+      "lookup": "raceId",
+      "from": {
+        "data": {"url": "../data/races.csv"},
+        "key": "raceId",
+        "fields": ["year"]
+      }
+    },
+    {
+      "lookup": "constructorId",
+      "from": {
+        "data": {"url": "../data/constructors.csv"},
+        "key": "constructorId",
+        "fields": ["name"]
+      }
+    },
+    {
+      "calculate": "datum.name == 'Ferrari' || datum.name == 'McLaren' || datum.name == 'Mercedes' || datum.name == 'Red Bull' ? datum.name : 'Others'",
+      "as": "team_group"
+    },
+    {
+      "aggregate": [{"op": "count", "as": "wins"}],
+      "groupby": ["team_group", "year"]
+    }
+  ],
+  "params": [
+    {
+      "name": "highlight",
+      "select": {"type": "point", "on": "mouseover", "fields": ["team_group"]},
+      "bind": "legend"
+    }
+  ],
+  "mark": {
+    "type": "bar",
+    "cornerRadiusTopLeft": 2,
+    "cornerRadiusTopRight": 2
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "quantitative",
+      "title": "Year",
+      "axis": {
+        "format": "d",
+        "labelColor": "#aaaaaa",
+        "titleColor": "#aaaaaa",
+        "gridColor": "#1a1a3a"
+      }
+    },
+    "y": {
+      "field": "wins",
+      "type": "quantitative",
+      "title": "Race wins",
+      "axis": {
+        "labelColor": "#aaaaaa",
+        "titleColor": "#aaaaaa",
+        "gridColor": "#1a1a3a"
+      }
+    },
+    "color": {
+      "field": "team_group",
+      "type": "nominal",
+      "scale": {
+        "domain": ["Ferrari", "McLaren", "Mercedes", "Red Bull", "Others"],
+        "range": ["#dc0000", "#ff8000", "#00d2be", "#ffd700", "#555566"]
+      },
+      "legend": {
+        "title": "Hover to highlight",
+        "titleColor": "#aaaaaa",
+        "labelColor": "#cccccc",
+        "orient": "right"
+      }
+    },
+    "opacity": {
+      "condition": {"param": "highlight", "value": 1},
+      "value": 0.1
+    },
+    "tooltip": [
+      {"field": "team_group", "title": "Constructor"},
+      {"field": "year", "title": "Year", "format": "d"},
+      {"field": "wins", "title": "Wins"}
+    ]
+  },
+  "config": {"background": "#0d0d1a", "view": {"stroke": null}}
+}

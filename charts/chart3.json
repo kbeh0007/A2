@@ -1,0 +1,107 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 380,
+  "height": 360,
+  "data": {"url": "../data/races.csv"},
+  "transform": [
+    {
+      "lookup": "circuitId",
+      "from": {
+        "data": {"url": "../data/circuits.csv"},
+        "key": "circuitId",
+        "fields": ["country"]
+      }
+    },
+    {
+      "aggregate": [{"op": "count", "as": "num_races"}],
+      "groupby": ["country"]
+    },
+    {
+      "window": [{"op": "rank", "as": "rank"}],
+      "sort": [{"field": "num_races", "order": "descending"}]
+    },
+    {"filter": "datum.rank <= 15"}
+  ],
+  "layer": [
+    {
+      "mark": {"type": "rule", "strokeWidth": 1.5},
+      "encoding": {
+        "y": {
+          "field": "country",
+          "type": "nominal",
+          "sort": "-x",
+          "title": null,
+          "axis": {"labelColor": "#cccccc", "labelFontSize": 11}
+        },
+        "x": {
+          "field": "num_races",
+          "type": "quantitative",
+          "title": null,
+          "axis": null
+        },
+        "x2": {"value": 0},
+        "color": {
+          "condition": [
+            {"test": "datum.rank == 1", "value": "#FFD700"},
+            {"test": "datum.rank <= 3", "value": "#C0C0C0"},
+            {"test": "datum.rank == 4", "value": "#CD7F32"}
+          ],
+          "value": "#444466"
+        }
+      }
+    },
+    {
+      "mark": {"type": "circle", "size": 100},
+      "encoding": {
+        "y": {
+          "field": "country",
+          "type": "nominal",
+          "sort": "-x",
+          "title": null,
+          "axis": {"labelColor": "#cccccc", "labelFontSize": 11}
+        },
+        "x": {
+          "field": "num_races",
+          "type": "quantitative",
+          "title": "Grands Prix hosted",
+          "axis": {
+            "titleColor": "#aaaaaa",
+            "labelColor": "#aaaaaa",
+            "gridColor": "#222244",
+            "titleFontSize": 11
+          }
+        },
+        "color": {
+          "condition": [
+            {"test": "datum.rank == 1", "value": "#FFD700"},
+            {"test": "datum.rank <= 3", "value": "#C0C0C0"},
+            {"test": "datum.rank == 4", "value": "#CD7F32"}
+          ],
+          "value": "#cc0000"
+        },
+        "tooltip": [
+          {"field": "country", "title": "Country"},
+          {"field": "num_races", "title": "Races hosted"},
+          {"field": "rank", "title": "Rank"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "align": "left", "dx": 7, "fontSize": 10},
+      "encoding": {
+        "y": {"field": "country", "type": "nominal", "sort": "-x"},
+        "x": {"field": "num_races", "type": "quantitative"},
+        "text": {"field": "num_races", "type": "quantitative"},
+        "color": {
+          "condition": [
+            {"test": "datum.rank == 1", "value": "#FFD700"},
+            {"test": "datum.rank <= 3", "value": "#C0C0C0"},
+            {"test": "datum.rank == 4", "value": "#CD7F32"}
+          ],
+          "value": "#aaaaaa"
+        }
+      }
+    }
+  ],
+  "config": {"background": "#0d0d1a", "view": {"stroke": null}}
+}

@@ -1,0 +1,135 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 700,
+  "height": 480,
+  "data": {"url": "../data/results.csv"},
+  "transform": [
+    {"filter": "datum.position == '1'"},
+    {
+      "lookup": "raceId",
+      "from": {
+        "data": {"url": "../data/races.csv"},
+        "key": "raceId",
+        "fields": ["year", "name", "circuitId"]
+      }
+    },
+    {"filter": "datum.circuitId == 2"},
+    {
+      "lookup": "driverId",
+      "from": {
+        "data": {"url": "../data/drivers.csv"},
+        "key": "driverId",
+        "fields": ["forename", "surname", "nationality"]
+      }
+    },
+    {
+      "lookup": "constructorId",
+      "from": {
+        "data": {"url": "../data/constructors.csv"},
+        "key": "constructorId",
+        "fields": ["name"]
+      }
+    },
+    {
+      "calculate": "datum.forename + ' ' + datum.surname",
+      "as": "driver_name"
+    },
+    {
+      "calculate": "datum.driver_name + ' (' + datum.name_2 + ')'",
+      "as": "label"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "height": 18,
+        "cornerRadiusEnd": 4
+      },
+      "encoding": {
+        "y": {
+          "field": "year",
+          "type": "ordinal",
+          "sort": "descending",
+          "title": null,
+          "axis": {
+            "labelColor": "#cccccc",
+            "labelFontSize": 12,
+            "tickSize": 0
+          }
+        },
+        "x": {
+          "value": 700
+        },
+        "x2": {"value": 0},
+        "color": {
+          "field": "name",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Ferrari", "McLaren", "Red Bull", "Mercedes", "Williams", "Renault"],
+            "range": ["#dc0000", "#ff8000", "#1e3d8f", "#00d2be", "#005aff", "#FFD700"]
+          },
+          "legend": {
+            "title": "Constructor",
+            "titleColor": "#aaaaaa",
+            "labelColor": "#cccccc",
+            "orient": "bottom",
+            "columns": 3
+          }
+        },
+        "opacity": {"value": 0.3},
+        "tooltip": [
+          {"field": "year", "title": "Year"},
+          {"field": "driver_name", "title": "Winner"},
+          {"field": "name", "title": "Constructor"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "fontSize": 12,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "y": {
+          "field": "year",
+          "type": "ordinal",
+          "sort": "descending"
+        },
+        "x": {"value": 0},
+        "text": {"field": "driver_name"},
+        "color": {
+          "field": "name",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Ferrari", "McLaren", "Red Bull", "Mercedes", "Williams", "Renault"],
+            "range": ["#dc0000", "#ff8000", "#1e3d8f", "#00d2be", "#005aff", "#FFD700"]
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -8,
+        "fontSize": 11,
+        "opacity": 0.7
+      },
+      "encoding": {
+        "y": {
+          "field": "year",
+          "type": "ordinal",
+          "sort": "descending"
+        },
+        "x": {"value": 700},
+        "text": {"field": "name"},
+        "color": {"value": "#888888"}
+      }
+    }
+  ],
+  "config": {"background": "#0d0d1a", "view": {"stroke": null}}
+}

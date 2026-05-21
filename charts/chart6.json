@@ -1,0 +1,83 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 440,
+  "height": 300,
+  "data": {"url": "../data/qualifying.csv"},
+  "transform": [
+    {"filter": "datum.q1 !== '\\N' && datum.q1 !== ''"},
+    {
+      "lookup": "raceId",
+      "from": {
+        "data": {"url": "../data/races.csv"},
+        "key": "raceId",
+        "fields": ["year", "circuitId"]
+      }
+    },
+    {"filter": "datum.circuitId == 9"},
+    {
+      "calculate": "toNumber(split(datum.q1, ':')[0]) * 60 + toNumber(split(datum.q1, ':')[1])",
+      "as": "q1_seconds"
+    },
+    {"filter": "datum.q1_seconds > 60 && datum.q1_seconds < 200"},
+    {
+      "aggregate": [{"op": "min", "field": "q1_seconds", "as": "best_q1"}],
+      "groupby": ["year"]
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "line": {"color": "#cc0000", "strokeWidth": 2},
+        "color": "#cc0000",
+        "fillOpacity": 0.15
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "title": "Year",
+          "axis": {
+            "format": "d",
+            "labelColor": "#aaaaaa",
+            "titleColor": "#aaaaaa",
+            "gridColor": "#222244",
+            "tickCount": 8
+          }
+        },
+        "y": {
+          "field": "best_q1",
+          "type": "quantitative",
+          "title": "Fastest Q1 time (seconds)",
+          "scale": {"zero": false},
+          "axis": {
+            "labelColor": "#aaaaaa",
+            "titleColor": "#aaaaaa",
+            "gridColor": "#222244"
+          }
+        },
+        "tooltip": [
+          {"field": "year", "title": "Year", "format": "d"},
+          {"field": "best_q1", "title": "Best Q1 time (sec)", "format": ".3f"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 50,
+        "color": "#cc0000"
+      },
+      "encoding": {
+        "x": {"field": "year", "type": "quantitative"},
+        "y": {"field": "best_q1", "type": "quantitative"},
+        "tooltip": [
+          {"field": "year", "title": "Year", "format": "d"},
+          {"field": "best_q1", "title": "Best Q1 time (sec)", "format": ".3f"}
+        ]
+      }
+    }
+  ],
+  "config": {"background": "#0d0d1a", "view": {"stroke": null}}
+}

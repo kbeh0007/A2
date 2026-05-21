@@ -1,0 +1,78 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 900,
+  "height": 450,
+  "projection": {"type": "equalEarth"},
+  "layer": [
+    {
+      "data": {
+        "url": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json",
+        "format": {"type": "topojson", "feature": "countries"}
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#1a1a2e",
+        "stroke": "#333355",
+        "strokeWidth": 0.5
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"country": "United Kingdom", "wins": 20},
+          {"country": "Germany", "wins": 12},
+          {"country": "Brazil", "wins": 8},
+          {"country": "France", "wins": 4},
+          {"country": "Finland", "wins": 4},
+          {"country": "Austria", "wins": 4},
+          {"country": "Australia", "wins": 4},
+          {"country": "Argentina", "wins": 2},
+          {"country": "Italy", "wins": 1},
+          {"country": "Canada", "wins": 1},
+          {"country": "South Africa", "wins": 1},
+          {"country": "Netherlands", "wins": 2},
+          {"country": "Spain", "wins": 2}
+        ]
+      },
+      "transform": [
+        {
+          "lookup": "country",
+          "from": {
+            "data": {
+              "url": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json",
+              "format": {"type": "topojson", "feature": "countries"}
+            },
+            "key": "properties.name",
+            "fields": ["type", "geometry", "properties"]
+          }
+        }
+      ],
+      "mark": {"type": "geoshape"},
+      "encoding": {
+        "color": {
+          "field": "wins",
+          "type": "quantitative",
+          "scale": {
+            "domain": [1, 20],
+            "range": ["#ff9999", "#cc0000"]
+          },
+          "legend": {
+            "title": "Championship wins",
+            "titleColor": "#aaaaaa",
+            "labelColor": "#aaaaaa",
+            "orient": "bottom-left",
+            "gradientLength": 120
+          }
+        },
+        "tooltip": [
+          {"field": "country", "title": "Country"},
+          {"field": "wins", "title": "Championship wins"}
+        ]
+      }
+    }
+  ],
+  "config": {
+    "background": "#0d0d1a",
+    "view": {"stroke": null}
+  }
+}

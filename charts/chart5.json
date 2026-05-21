@@ -1,0 +1,78 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 500,
+  "height": 320,
+  "data": {"url": "../data/results.csv"},
+  "transform": [
+    {"filter": "datum.position == '1'"},
+    {
+      "lookup": "raceId",
+      "from": {
+        "data": {"url": "../data/races.csv"},
+        "key": "raceId",
+        "fields": ["year"]
+      }
+    },
+    {
+      "lookup": "constructorId",
+      "from": {
+        "data": {"url": "../data/constructors.csv"},
+        "key": "constructorId",
+        "fields": ["name"]
+      }
+    },
+    {"calculate": "floor(datum.year / 10) * 10", "as": "decade"},
+    {
+      "aggregate": [{"op": "count", "as": "wins"}],
+      "groupby": ["name", "decade"]
+    },
+    {
+      "window": [{"op": "sum", "field": "wins", "as": "total_wins"}],
+      "groupby": ["name"],
+      "frame": [null, null]
+    },
+    {"filter": "datum.total_wins >= 10"}
+  ],
+  "mark": "rect",
+  "encoding": {
+    "x": {
+      "field": "decade",
+      "type": "ordinal",
+      "title": "Decade",
+      "axis": {
+        "labelColor": "#333333",
+        "titleColor": "#555555",
+        "labelFontSize": 11,
+        "labelExpr": "datum.value + 's'"
+      }
+    },
+    "y": {
+      "field": "name",
+      "type": "nominal",
+      "title": null,
+      "sort": {"op": "sum", "field": "wins", "order": "descending"},
+      "axis": {"labelColor": "#333333", "labelFontSize": 11}
+    },
+    "color": {
+      "field": "wins",
+      "type": "quantitative",
+      "scale": {"domain": [1, 60], "scheme": "reds"},
+      "legend": {
+        "title": "Race wins",
+        "titleColor": "#333333",
+        "labelColor": "#333333",
+        "orient": "bottom-right",
+        "gradientLength": 120
+      }
+    },
+    "tooltip": [
+      {"field": "name", "title": "Constructor"},
+      {"field": "decade", "title": "Decade"},
+      {"field": "wins", "title": "Wins"}
+    ]
+  },
+  "config": {
+    "background": "#ffffff",
+    "view": {"stroke": "#dddddd"}
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 460,
+  "height": 360,
+  "projection": {
+    "type": "mercator",
+    "center": [10, 51],
+    "scale": 580
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json",
+        "format": {"type": "topojson", "feature": "countries"}
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#1a1a2e",
+        "stroke": "#333355",
+        "strokeWidth": 0.5
+      }
+    },
+    {
+      "data": {"url": "../data/races.csv"},
+      "transform": [
+        {
+          "aggregate": [{"op": "count", "as": "num_races"}],
+          "groupby": ["circuitId"]
+        },
+        {
+          "lookup": "circuitId",
+          "from": {
+            "data": {"url": "../data/circuits.csv"},
+            "key": "circuitId",
+            "fields": ["name", "location", "country", "lat", "lng", "circuitId"]
+          }
+        },
+        {
+          "filter": "datum.lng > -15 && datum.lng < 35 && datum.lat > 35 && datum.lat < 62"
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "shape": "triangle-down",
+        "opacity": 0.9,
+        "strokeWidth": 0,
+        "filled": true
+      },
+      "encoding": {
+        "longitude": {"field": "lng", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "size": {
+          "field": "num_races",
+          "type": "quantitative",
+          "scale": {"range": [40, 350]},
+          "legend": null
+        },
+        "color": {
+          "field": "num_races",
+          "type": "quantitative",
+          "scale": {"domain": [1, 70], "range": ["#ff9999", "#cc0000"]},
+          "legend": null
+        },
+        "tooltip": [
+          {"field": "name", "title": "Circuit"},
+          {"field": "location", "title": "City"},
+          {"field": "country", "title": "Country"},
+          {"field": "num_races", "title": "Races hosted"}
+        ]
+      }
+    },
+    {
+      "data": {"url": "../data/races.csv"},
+      "transform": [
+        {
+          "aggregate": [{"op": "count", "as": "num_races"}],
+          "groupby": ["circuitId"]
+        },
+        {
+          "lookup": "circuitId",
+          "from": {
+            "data": {"url": "../data/circuits.csv"},
+            "key": "circuitId",
+            "fields": ["name", "location", "country", "lat", "lng"]
+          }
+        },
+        {
+          "filter": "datum.lng > -15 && datum.lng < 35 && datum.lat > 35 && datum.lat < 62"
+        },
+        {"filter": "datum.num_races >= 50"}
+      ],
+      "mark": {
+        "type": "text",
+        "dy": -12,
+        "fontSize": 10,
+        "fontWeight": "bold",
+        "color": "#ffffff"
+      },
+      "encoding": {
+        "longitude": {"field": "lng", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "text": {"field": "location", "type": "nominal"}
+      }
+    }
+  ],
+  "config": {"background": "#0d0d1a", "view": {"stroke": null}}
+}

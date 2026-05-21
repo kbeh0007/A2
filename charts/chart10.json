@@ -1,0 +1,143 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 620,
+  "height": 340,
+  "data": {"url": "../data/driver_standings.csv"},
+  "transform": [
+    {
+      "lookup": "raceId",
+      "from": {
+        "data": {"url": "../data/races.csv"},
+        "key": "raceId",
+        "fields": ["year", "round"]
+      }
+    },
+    {"filter": "datum.year == 2021"},
+    {
+      "lookup": "driverId",
+      "from": {
+        "data": {"url": "../data/drivers.csv"},
+        "key": "driverId",
+        "fields": ["surname"]
+      }
+    },
+    {"filter": "datum.position <= 6"}
+  ],
+  "layer": [
+    {
+      "mark": {"type": "line", "interpolate": "linear"},
+      "encoding": {
+        "x": {
+          "field": "round",
+          "type": "quantitative",
+          "title": "Race round",
+          "scale": {"domain": [1, 22]},
+          "axis": {
+            "labelColor": "#aaaaaa",
+            "titleColor": "#aaaaaa",
+            "gridColor": "#1a1a3a",
+            "tickCount": 22
+          }
+        },
+        "y": {
+          "field": "position",
+          "type": "quantitative",
+          "title": "Championship position",
+          "scale": {"domain": [0.5, 7.5]},
+          "axis": {
+            "labelColor": "#aaaaaa",
+            "titleColor": "#aaaaaa",
+            "gridColor": "#1a1a3a",
+            "values": [1, 2, 3, 4, 5, 6, 7]
+          }
+        },
+        "color": {
+          "field": "surname",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Hamilton","Verstappen","Bottas","Perez","Norris","Leclerc"],
+            "range": ["#00d2be","#cc0000","#888899","#888899","#888899","#888899"]
+          },
+          "legend": null
+        },
+        "strokeWidth": {
+          "condition": {
+            "test": "datum.surname == 'Hamilton' || datum.surname == 'Verstappen'",
+            "value": 3
+          },
+          "value": 1.5
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.surname == 'Hamilton' || datum.surname == 'Verstappen'",
+            "value": 1
+          },
+          "value": 0.45
+        },
+        "detail": {"field": "surname", "type": "nominal"}
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 60,
+        "opacity": 0
+      },
+      "encoding": {
+        "x": {"field": "round", "type": "quantitative"},
+        "y": {"field": "position", "type": "quantitative"},
+        "color": {
+          "field": "surname",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Hamilton","Verstappen","Bottas","Perez","Norris","Leclerc"],
+            "range": ["#00d2be","#cc0000","#888899","#888899","#888899","#888899"]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {"field": "surname", "title": "Driver"},
+          {"field": "round", "title": "Round"},
+          {"field": "position", "title": "Championship position"},
+          {"field": "points", "title": "Points"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -4,
+        "dy": -10,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#00d2be"
+      },
+      "data": {"values": [{"x": 22, "y": 2}]},
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative"},
+        "y": {"field": "y", "type": "quantitative"},
+        "text": {"value": "Hamilton"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -4,
+        "dy": 14,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#cc0000"
+      },
+      "data": {"values": [{"x": 22, "y": 1}]},
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative"},
+        "y": {"field": "y", "type": "quantitative"},
+        "text": {"value": "Verstappen"}
+      }
+    }
+  ],
+  "config": {"background": "#0d0d1a", "view": {"stroke": null}}
+}

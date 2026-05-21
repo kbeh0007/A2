@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The World at Full Speed — F1 Through Data</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+
+<body>
+
+  <section class="hero">
+    <h1>The World at Full Speed</h1>
+    <p class="subtitle">Formula 1 Through Data — A Story of Speed, Glory, and Malaysia's Place in It</p>
+  </section>
+
+  <section class="section">
+    <div class="stat-row">
+      <div class="stat-card">
+        <span class="stat-number">75</span>
+        <span class="stat-label">Seasons of F1</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">800M+</span>
+        <span class="stat-label">Global fans (2025)</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">$3.8B</span>
+        <span class="stat-label">Revenue in 2025</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">19</span>
+        <span class="stat-label">Malaysian GPs held</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">RM300M</span>
+        <span class="stat-label">Annual hosting fee today</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="section">
+    <div class="text-chart-row">
+      <div class="text-col">
+        <h2>F1's World: Every Circuit Ever Raced</h2>
+        <p>Formula 1 has raced across 6 continents and over 30 countries since 1950.
+           Each pin marks a circuit. Lighter red means fewer races hosted,
+           deep red means many. Malaysia's Sepang is highlighted in gold.</p>
+        <p class="hint">Hover over any pin to see circuit details.</p>
+      </div>
+      <div class="chart-col">
+        <div id="chart1"></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="section">
+    <h2>Europe: The Home of Formula 1</h2>
+    <p>Europe has dominated F1's calendar since 1950. Only circuits hosting 50 or more
+       races are labelled on the map — hover any pin for full details.
+       The <strong style="color:#FFD700">gold</strong>,
+       <strong style="color:#C0C0C0">silver</strong> and
+       <strong style="color:#CD7F32">bronze</strong> dots on the right rank nations
+       by total Grands Prix hosted. Italy leads the world with over 100 races.</p>
+    <div class="two-col-center">
+      <div id="chart2"></div>
+      <div id="chart3"></div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="section">
+    <div class="text-chart-row">
+      <div class="text-col">
+        <h2>Which Nations Breed Champions?</h2>
+        <p>Great Britain leads all nations in drivers' world championships,
+           followed by Germany and Brazil. The map shades each country
+           by total titles won by its drivers. Hover any country to see the count.</p>
+      </div>
+      <div class="chart-col">
+        <div id="chart4"></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="section">
+    <h2>The Shifting Power of Constructor Dynasties</h2>
+    <p>Ferrari ruled the 1950s and the 2000s. McLaren owned the 1980s. Mercedes
+       has been virtually untouchable since the hybrid era began in 2014. Each
+       cell shows race wins per decade — the darker the red, the more dominant.
+       Hover any cell for the exact count.</p>
+    <div style="display:flex; justify-content:center;">
+      <div class="chart-panel">
+        <div id="chart5"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <p>The chart below shows annual race wins by each major constructor since 1950.
+       Ferrari, McLaren, Mercedes, and Red Bull are shown individually.
+       All other teams are grouped as Others.
+       Hover over the legend on the right to highlight a specific team.</p>
+    <div style="display:flex; justify-content:center;">
+      <div id="chart12"></div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="section">
+    <h2>Speed and Strategy on Track</h2>
+    <div class="two-col-equal">
+      <div>
+        <p>Qualifying lap times at Silverstone across the decades reveal the complex
+           story of F1 regulation cycles. Times were fastest in the V10 era of the
+           early 2000s, rose sharply when single lap qualifying formats were introduced
+           between 2003 and 2005, then settled into a new pattern as the sport
+           standardised its current three-session format. Each point shows the fastest
+           Q1 time recorded at Silverstone that year.</p>
+        <div style="display:flex; justify-content:center;">
+          <div id="chart6"></div>
+        </div>
+      </div>
+      <div>
+        <p>Does where you start determine where you finish? Each dot represents a
+           grid position to finish position combination across all races since 2010.
+           The dashed diagonal shows perfect grid to finish alignment.</p>
+        <div style="display:flex; justify-content:center;">
+          <div id="chart7"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="section">
+    <div class="text-chart-row">
+      <div class="text-col">
+        <h2>The Most Dramatic Season — 2021</h2>
+        <p><strong style="color:#00d2be">Lewis Hamilton</strong> and
+           <strong style="color:#cc0000">Max Verstappen</strong>
+           swapped the championship lead repeatedly across 22 rounds in 2021,
+           separated by just a handful of points for most of the year.
+           The grey lines show the other top contenders falling away
+           as the season wore on.</p>
+        <p class="hint">Hover any line for round by round details.</p>
+        <div class="winner-note">
+          Max Verstappen clinched the 2021 World Drivers' Championship on the
+          final lap of the final race in Abu Dhabi — one of the most controversial
+          and dramatic finishes in F1 history.
+        </div>
+      </div>
+      <div class="chart-col">
+        <div id="chart10"></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="section">
+    <h2>Malaysia at Full Speed — 19 Years at Sepang</h2>
+    <p>From Schumacher's comeback in 1999 to Verstappen's farewell win in 2017,
+       Sepang hosted some of F1's most iconic moments. Each row is one race,
+       coloured by the winning constructor. Hover any row for details.</p>
+    <div class="sepang-row">
+      <div class="sepang-chart">
+        <div id="chart9"></div>
+      </div>
+      <div class="sepang-notes">
+        <div class="note-item">
+          <span class="note-year">1999</span>
+          <span class="note-text">Schumacher returned from injury to help Ferrari
+          secure a 1-2 finish. Both cars were disqualified then reinstated on appeal.</span>
+        </div>
+        <div class="note-item">
+          <span class="note-year">2001</span>
+          <span class="note-text">A torrential tropical rainstorm mid-race turned
+          Sepang into a survival test. Ferrari's strategic brilliance prevailed.</span>
+        </div>
+        <div class="note-item">
+          <span class="note-year">2009</span>
+          <span class="note-text">The race was stopped after 31 laps due to extreme
+          weather and declared under half points rules — the only Malaysian GP ever
+          cut short in this way.</span>
+        </div>
+        <div class="note-item">
+          <span class="note-year">2013</span>
+          <span class="note-text">The infamous Multi 21 controversy — Vettel ignored
+          team orders and overtook Webber, sparking a major internal Red Bull dispute.</span>
+        </div>
+        <div class="note-item">
+          <span class="note-year">2017</span>
+          <span class="note-text">Verstappen won the final Malaysian GP, dedicating
+          it to his father Jos. Malaysia's F1 chapter closed that afternoon.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="section">
+    <h2>F1 is Bigger Than Ever — But Malaysia Left Too Soon</h2>
+    <p>When Malaysia left in 2017, F1 viewership was at a decade low of just
+       352 million. Since then, driven by Netflix's <em>Drive to Survive</em>
+       and a new generation of fans, the sport has exploded in every measurable way.
+       The shaded region on both charts marks the years Malaysia was on the calendar.</p>
+    <div class="two-col-equal">
+      <div>
+        <p class="chart-sublabel">
+          <span style="color:#cc0000">■</span> TV viewers (millions)
+          &nbsp;&nbsp;
+          <span style="color:#ffd700">●</span> Race attendance (millions)
+        </p>
+        <div style="display:flex; justify-content:center;">
+          <div id="chart8"></div>
+        </div>
+      </div>
+      <div>
+        <p class="chart-sublabel">
+          <span style="color:#cc0000">●</span> Revenue (billion USD)
+          &nbsp;&nbsp;
+          <span style="color:#ffd700">- -</span> Avg ticket price (USD)
+        </p>
+        <div style="display:flex; justify-content:center;">
+          <div id="chart11"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="section">
+    <h2>Can Malaysia Afford to Return?</h2>
+    <p>F1 has never been more popular. The global fanbase exceeds 800 million,
+       race attendance is at record highs, and revenue has more than doubled
+       since Malaysia left the calendar. Southeast Asia has no race since
+       Singapore dominates the region. Yet Malaysia's Sports Minister confirmed
+       in August 2025 that hosting fees are estimated at
+       <strong style="color:#cc0000">RM300 million per year</strong>,
+       with a typical 3 to 5 year contract costing up to
+       <strong style="color:#cc0000">RM1.5 billion total</strong>.
+       When Malaysia last hosted, Sepang rarely filled its 130,000 seat capacity.
+       The question is not whether Malaysia loves F1. The question is whether
+       the sport's new golden age changes the economics enough to justify
+       the investment, and whether private funding could finally make it happen.</p>
+  </section>
+
+  <footer>
+    <p>
+      Data: Kaggle F1 World Championship Dataset (Rohan Rao, 2021) ·
+      Formulapedia F1 Statistics (formulapedia.com) ·
+      GPDestinations Attendance Figures (gpdestinations.com) ·
+      The World Data F1 Statistics (theworlddata.com) ·
+      Wikipedia — Malaysian Grand Prix ·
+      GPDestinations Ticket Price Rankings
+    </p>
+    <p>Author: Beh Kai Ying | FIT2179 Data Visualisation 2 | Monash University Malaysia | 2026</p>
+  </footer>
+
+  <script>
+    vegaEmbed('#chart1',  'charts/chart1.json',  {"actions": false});
+    vegaEmbed('#chart2',  'charts/chart2.json',  {"actions": false});
+    vegaEmbed('#chart3',  'charts/chart3.json',  {"actions": false});
+    vegaEmbed('#chart4',  'charts/chart4.json',  {"actions": false});
+    vegaEmbed('#chart5',  'charts/chart5.json',  {"actions": false});
+    vegaEmbed('#chart6',  'charts/chart6.json',  {"actions": false});
+    vegaEmbed('#chart7',  'charts/chart7.json',  {"actions": false});
+    vegaEmbed('#chart8',  'charts/chart8.json',  {"actions": false});
+    vegaEmbed('#chart9',  'charts/chart9.json',  {"actions": false});
+    vegaEmbed('#chart10', 'charts/chart10.json', {"actions": false});
+    vegaEmbed('#chart11', 'charts/chart11.json', {"actions": false});
+    vegaEmbed('#chart12', 'charts/chart12.json', {"actions": false});
+  </script>
+
+</body>
+</html>
