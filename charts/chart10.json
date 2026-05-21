@@ -2,12 +2,12 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 620,
   "height": 340,
-  "data": {"url": "../data/driver_standings.csv"},
+  "data": {"url": "data/driver_standings.csv"},
   "transform": [
     {
       "lookup": "raceId",
       "from": {
-        "data": {"url": "../data/races.csv"},
+        "data": {"url": "data/races.csv"},
         "key": "raceId",
         "fields": ["year", "round"]
       }
@@ -16,7 +16,7 @@
     {
       "lookup": "driverId",
       "from": {
-        "data": {"url": "../data/drivers.csv"},
+        "data": {"url": "data/drivers.csv"},
         "key": "driverId",
         "fields": ["surname"]
       }

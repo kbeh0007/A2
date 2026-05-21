@@ -17,7 +17,7 @@
       }
     },
     {
-      "data": {"url": "../data/races.csv"},
+      "data": {"url": "data/races.csv"},
       "transform": [
         {
           "aggregate": [{"op": "count", "as": "num_races"}],
@@ -26,7 +26,7 @@
         {
           "lookup": "circuitId",
           "from": {
-            "data": {"url": "../data/circuits.csv"},
+            "data": {"url": "data/circuits.csv"},
             "key": "circuitId",
             "fields": ["name", "location", "country", "lat", "lng", "circuitId"]
           }
@@ -73,7 +73,7 @@
       }
     },
     {
-      "data": {"url": "../data/races.csv"},
+      "data": {"url": "data/races.csv"},
       "transform": [
         {
           "aggregate": [{"op": "count", "as": "num_races"}],
@@ -82,7 +82,7 @@
         {
           "lookup": "circuitId",
           "from": {
-            "data": {"url": "../data/circuits.csv"},
+            "data": {"url": "data/circuits.csv"},
             "key": "circuitId",
             "fields": ["name", "location", "country", "lat", "lng", "circuitId"]
           }
@@ -111,7 +111,7 @@
       }
     },
     {
-      "data": {"url": "../data/circuits.csv"},
+      "data": {"url": "data/circuits.csv"},
       "transform": [
         {"filter": "datum.circuitId == 2"}
       ],

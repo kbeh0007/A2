@@ -2,13 +2,13 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 440,
   "height": 300,
-  "data": {"url": "../data/qualifying.csv"},
+  "data": {"url": "data/qualifying.csv"},
   "transform": [
     {"filter": "datum.q1 !== '\\N' && datum.q1 !== ''"},
     {
       "lookup": "raceId",
       "from": {
-        "data": {"url": "../data/races.csv"},
+        "data": {"url": "data/races.csv"},
         "key": "raceId",
         "fields": ["year", "circuitId"]
       }

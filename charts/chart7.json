@@ -2,14 +2,14 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 400,
   "height": 380,
-  "data": {"url": "../data/results.csv"},
+  "data": {"url": "data/results.csv"},
   "transform": [
     {"filter": "datum.grid > 0 && datum.positionOrder > 0"},
     {"filter": "datum.grid <= 20 && datum.positionOrder <= 20"},
     {
       "lookup": "raceId",
       "from": {
-        "data": {"url": "../data/races.csv"},
+        "data": {"url": "data/races.csv"},
         "key": "raceId",
         "fields": ["year"]
       }
