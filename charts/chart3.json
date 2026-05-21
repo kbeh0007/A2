@@ -2,12 +2,12 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 380,
   "height": 360,
-  "data": {"url": "data/races.csv"},
+  "data": {"url": "https://kbeh0007.github.io/A2/data/races.csv"},
   "transform": [
     {
       "lookup": "circuitId",
       "from": {
-        "data": {"url": "data/circuits.csv"},
+        "data": {"url": "https://kbeh0007.github.io/A2/data/circuits.csv"},
         "key": "circuitId",
         "fields": ["country"]
       }
