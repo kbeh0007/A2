@@ -15,13 +15,16 @@
 
 <body>
 
-  <!-- HERO — visual centre, most important element centred -->
   <section class="hero">
-    <h1>The World at Full Speed</h1>
-    <p class="subtitle">Formula 1 Through Data — A Story of Speed, Glory, and Malaysia's Place in it</p>
+    <div class="hero-inner">
+      <img src="images/f1logo.png" alt="Formula 1 logo" class="hero-logo">
+      <div class="hero-text">
+        <h1>The World at Full Speed</h1>
+        <p class="subtitle">Formula 1 Through Data — A Story of Speed, Glory, and Malaysia's Place in It</p>
+      </div>
+    </div>
   </section>
 
-  <!-- STAT CARDS — full width grid -->
   <section class="section">
     <div class="stat-row">
       <div class="stat-card">
@@ -49,7 +52,6 @@
 
   <hr class="divider">
 
-  <!-- WORLD MAP — text left (4 cols), chart right (8 cols) -->
   <section class="section">
     <div class="col-grid-text-chart">
       <div class="section-text">
@@ -57,7 +59,7 @@
         <p>Formula 1 has raced across 6 continents and over 30 countries since 1950.
            Each pin marks a circuit. Lighter red means fewer races hosted,
            deep red means many. Malaysia's Sepang is highlighted in gold.</p>
-        <p class="hint">Hover over any pin to see circuit details.</p>
+        <p class="hover-hint">Hover over any pin to see circuit details.</p>
       </div>
       <div id="chart1"></div>
     </div>
@@ -65,7 +67,6 @@
 
   <hr class="divider">
 
-  <!-- EUROPE MAP + LOLLIPOP — two equal columns -->
   <section class="section">
     <h2>Europe: The Home of Formula 1</h2>
     <p>Europe has dominated F1's calendar since 1950. Only circuits hosting 50 or more
@@ -82,14 +83,14 @@
 
   <hr class="divider">
 
-  <!-- CHAMPIONS MAP — text left, map right -->
   <section class="section">
     <div class="col-grid-text-chart">
       <div class="section-text">
         <h2>Which Nations Breed Champions?</h2>
         <p>Great Britain leads all nations in drivers' world championships,
            followed by Germany and Brazil. The map shades each country
-           by total titles won by its drivers. Hover any country to see the count.</p>
+           by total titles won by its drivers.</p>
+        <p class="hover-hint">Hover any country to see the count.</p>
       </div>
       <div id="chart4"></div>
     </div>
@@ -97,13 +98,12 @@
 
   <hr class="divider">
 
-  <!-- HEATMAP — full width centred -->
   <section class="section">
     <h2>The Shifting Power of Constructor Dynasties</h2>
     <p>Ferrari ruled the 1950s and the 2000s. McLaren owned the 1980s. Mercedes
        has been virtually untouchable since the hybrid era began in 2014. Each
-       cell shows race wins per decade — the darker the red, the more dominant.
-       Hover any cell for the exact count.</p>
+       cell shows race wins per decade — the darker the red, the more dominant.</p>
+    <p class="hover-hint">Hover any cell for the exact count.</p>
     <div class="chart-center">
       <div class="chart-panel">
         <div id="chart5"></div>
@@ -111,12 +111,11 @@
     </div>
   </section>
 
-  <!-- ANNUAL WINS — full width -->
   <section class="section">
     <p>The chart below shows annual race wins by each major constructor since 1950.
        Ferrari, McLaren, Mercedes, and Red Bull are shown individually.
-       All other teams are grouped as Others.
-       Hover over the legend on the right to highlight a specific team.</p>
+       All other teams are grouped as Others.</p>
+    <p class="hover-hint">Hover over the legend on the right to highlight a specific team.</p>
     <div class="chart-center">
       <div id="chart12"></div>
     </div>
@@ -124,32 +123,30 @@
 
   <hr class="divider">
 
-  <!-- SPEED AND STRATEGY -->
-<section class="section">
-  <h2>Speed and Strategy on Track</h2>
-  <div class="col-grid-2">
-    <div>
-      <p>Qualifying lap times at Silverstone across the decades reveal the complex
-         story of F1 regulation cycles. Times were fastest in the V10 era of the
-         early 2000s, rose sharply when single lap qualifying formats were introduced
-         between 2003 and 2005, then settled into a new pattern as the sport
-         standardised its current three-session format. Each point shows the fastest
-         Q1 time recorded at Silverstone that year.</p>
-      <div id="chart6"></div>
+  <section class="section">
+    <h2>Speed and Strategy on Track</h2>
+    <div class="col-grid-2">
+      <div>
+        <p>Qualifying lap times at Silverstone across the decades reveal the complex
+           story of F1 regulation cycles. Times were fastest in the V10 era of the
+           early 2000s, rose sharply when single lap qualifying formats were introduced
+           between 2003 and 2005, then settled into a new pattern as the sport
+           standardised its current three-session format. Each point shows the fastest
+           Q1 time recorded at Silverstone that year.</p>
+        <div id="chart6"></div>
+      </div>
+      <div>
+        <p class="chart-question">Does where you start determine where you finish?</p>
+        <p>Each dot represents a grid position to finish position combination across
+           all races since 2010. Bigger, darker dots mean that outcome happened more
+           often. The dashed diagonal shows perfect grid to finish alignment.</p>
+        <div id="chart7"></div>
+      </div>
     </div>
-    <div>
-      <p class="chart-question">Does where you start determine where you finish?</p>
-      <p>Each dot represents a grid position to finish position combination across
-         all races since 2010. Bigger, darker dots mean that outcome happened more
-         often. The dashed diagonal shows perfect grid to finish alignment.</p>
-      <div id="chart7"></div>
-    </div>
-  </div>
-</section>
+  </section>
 
   <hr class="divider">
 
-  <!-- 2021 SEASON — text left, chart right -->
   <section class="section">
     <div class="col-grid-text-chart">
       <div class="section-text">
@@ -160,7 +157,7 @@
            separated by just a handful of points for most of the year.
            The grey lines show the other top contenders falling away
            as the season wore on.</p>
-        <p class="hint">Hover any point for round by round details.</p>
+        <p class="hover-hint">Hover any point for round by round details.</p>
         <div class="winner-note">
           Going into the final round at Abu Dhabi, Verstappen led Hamilton by just
           8 points. Hamilton led the race and was on course to be champion —
@@ -176,12 +173,12 @@
 
   <hr class="divider">
 
-  <!-- SEPANG TIMELINE — chart left (8 cols), notes right (4 cols) -->
   <section class="section">
     <h2>Malaysia at Full Speed — 19 Years at Sepang</h2>
     <p>From Schumacher's comeback in 1999 to Verstappen's farewell win in 2017,
        Sepang hosted some of F1's most iconic moments. Each row is one race,
-       coloured by the winning constructor. Hover any row for details.</p>
+       coloured by the winning constructor.</p>
+    <p class="hover-hint">Hover any row for details.</p>
     <div class="col-grid-chart-notes">
       <div id="chart9"></div>
       <div class="sepang-notes">
@@ -218,7 +215,6 @@
 
   <hr class="divider">
 
-  <!-- GROWTH CHARTS — two equal columns -->
   <section class="section">
     <h2>F1 is Bigger Than Ever — But Malaysia Left Too Soon</h2>
     <p>When Malaysia left in 2017, F1 viewership was at a decade low of just
@@ -247,7 +243,6 @@
 
   <hr class="divider">
 
-  <!-- CONCLUSION — full width text -->
   <section class="section">
     <h2>Can Malaysia Afford to Return?</h2>
     <p>F1 has never been more popular. The global fanbase exceeds 800 million,
@@ -274,6 +269,7 @@
       GPDestinations Ticket Price Rankings
     </p>
     <p>Author: Beh Kai Ying | FIT2179 Data Visualisation 2 | Monash University Malaysia | 2026</p>
+    <p>F1 logo used for academic purposes only. Formula 1 is a registered trademark of Formula One Licensing BV.</p>
   </footer>
 
   <script>
