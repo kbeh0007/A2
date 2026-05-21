@@ -56,7 +56,7 @@
     "color": {
       "field": "wins",
       "type": "quantitative",
-      "scale": {"domain": [1, 60], "scheme": "reds"},
+      "scale": {"domain": [1, 100], "scheme": "reds"},
       "legend": {
         "title": "Race wins",
         "titleColor": "#333333",
