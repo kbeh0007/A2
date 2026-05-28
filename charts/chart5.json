@@ -173,7 +173,7 @@
         },
         "text": {
           "condition": {
-            "test": "datum.wins >= 10",
+            "test": "datum.wins >= 50",
             "field": "wins"
           },
           "value": ""
