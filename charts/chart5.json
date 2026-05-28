@@ -72,6 +72,88 @@
   "layer": [
     {
       "mark": {
+        "type": "rect",
+        "opacity": 0.1,
+        "color": "#cc0000"
+      },
+      "data": {
+        "values": [
+          {
+            "decade": 1990
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "decade",
+          "type": "ordinal"
+        },
+        "y": {
+          "value": 0
+        },
+        "y2": {
+          "value": 340
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rect",
+        "opacity": 0.08,
+        "color": "#00d2be"
+      },
+      "data": {
+        "values": [
+          {
+            "decade": 2010
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "decade",
+          "type": "ordinal"
+        },
+        "y": {
+          "value": 0
+        },
+        "y2": {
+          "value": 340
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "bottom",
+        "dy": -12,
+        "fontSize": 9,
+        "color": "#66ddcc",
+        "fontStyle": "italic"
+      },
+      "data": {
+        "values": [
+          {
+            "decade": 2010
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "decade",
+          "type": "ordinal"
+        },
+        "y": {
+          "value": 0
+        },
+        "text": {
+          "value": "Hybrid era"
+        }
+      }
+    },
+    {
+      "mark": {
         "type": "rect"
       },
       "encoding": {
@@ -184,88 +266,6 @@
             "value": "#ffffff"
           },
           "value": "#ffaaaa"
-        }
-      }
-    },
-    {
-      "mark": {
-        "type": "rect",
-        "opacity": 0.1,
-        "color": "#cc0000"
-      },
-      "data": {
-        "values": [
-          {
-            "decade": 1990
-          }
-        ]
-      },
-      "encoding": {
-        "x": {
-          "field": "decade",
-          "type": "ordinal"
-        },
-        "y": {
-          "value": 0
-        },
-        "y2": {
-          "value": 340
-        }
-      }
-    },
-    {
-      "mark": {
-        "type": "rect",
-        "opacity": 0.08,
-        "color": "#00d2be"
-      },
-      "data": {
-        "values": [
-          {
-            "decade": 2010
-          }
-        ]
-      },
-      "encoding": {
-        "x": {
-          "field": "decade",
-          "type": "ordinal"
-        },
-        "y": {
-          "value": 0
-        },
-        "y2": {
-          "value": 340
-        }
-      }
-    },
-    {
-      "mark": {
-        "type": "text",
-        "align": "center",
-        "baseline": "bottom",
-        "dy": -12,
-        "fontSize": 9,
-        "color": "#66ddcc",
-        "fontStyle": "italic"
-      },
-      "data": {
-        "values": [
-          {
-            "decade": 2010
-          }
-        ]
-      },
-      "encoding": {
-        "x": {
-          "field": "decade",
-          "type": "ordinal"
-        },
-        "y": {
-          "value": 0
-        },
-        "text": {
-          "value": "Hybrid era"
         }
       }
     }
