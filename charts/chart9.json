@@ -1,33 +1,54 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 700,
-  "height": 480,
-  "data": {"url": "https://kbeh0007.github.io/A2/data/results.csv"},
+  "height": 490,
+  "data": {
+    "url": "https://kbeh0007.github.io/A2/data/results.csv"
+  },
   "transform": [
-    {"filter": "datum.position == '1'"},
+    {
+      "filter": "datum.position == '1'"
+    },
     {
       "lookup": "raceId",
       "from": {
-        "data": {"url": "https://kbeh0007.github.io/A2/data/races.csv"},
+        "data": {
+          "url": "https://kbeh0007.github.io/A2/data/races.csv"
+        },
         "key": "raceId",
-        "fields": ["year", "name", "circuitId"]
+        "fields": [
+          "year",
+          "name",
+          "circuitId"
+        ]
       }
     },
-    {"filter": "datum.circuitId == 2"},
+    {
+      "filter": "datum.circuitId == 2"
+    },
     {
       "lookup": "driverId",
       "from": {
-        "data": {"url": "https://kbeh0007.github.io/A2/data/drivers.csv"},
+        "data": {
+          "url": "https://kbeh0007.github.io/A2/data/drivers.csv"
+        },
         "key": "driverId",
-        "fields": ["forename", "surname", "nationality"]
+        "fields": [
+          "forename",
+          "surname"
+        ]
       }
     },
     {
       "lookup": "constructorId",
       "from": {
-        "data": {"url": "https://kbeh0007.github.io/A2/data/constructors.csv"},
+        "data": {
+          "url": "https://kbeh0007.github.io/A2/data/constructors.csv"
+        },
         "key": "constructorId",
-        "fields": ["name"]
+        "fields": [
+          "name"
+        ]
       }
     },
     {
@@ -35,39 +56,186 @@
       "as": "driver_name"
     },
     {
-      "calculate": "datum.driver_name + ' (' + datum.name_2 + ')'",
-      "as": "label"
+      "calculate": "toNumber(datum.grid)",
+      "as": "grid_pos"
+    },
+    {
+      "calculate": "datum.driver_name + '  \u00b7  ' + datum.name",
+      "as": "driver_constructor"
     }
   ],
   "layer": [
     {
       "mark": {
-        "type": "bar",
-        "height": 18,
-        "cornerRadiusEnd": 4
+        "type": "rule",
+        "strokeWidth": 0.5,
+        "color": "#333355"
       },
       "encoding": {
         "y": {
           "field": "year",
           "type": "ordinal",
           "sort": "descending",
-          "title": null,
           "axis": {
-            "labelColor": "#cccccc",
+            "labelColor": "#e0e0e0",
             "labelFontSize": 12,
-            "tickSize": 0
+            "tickSize": 0,
+            "title": null,
+            "labelPadding": 8,
+            "labelOffset": 0
           }
         },
         "x": {
-          "value": 700
+          "value": 0
         },
-        "x2": {"value": 0},
+        "x2": {
+          "value": 700
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "y": {
+          "field": "year",
+          "type": "ordinal",
+          "sort": "descending"
+        },
+        "x": {
+          "field": "grid_pos",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              22
+            ]
+          },
+          "axis": null
+        },
+        "x2": {
+          "value": 0
+        },
         "color": {
           "field": "name",
           "type": "nominal",
           "scale": {
-            "domain": ["Ferrari", "McLaren", "Red Bull", "Mercedes", "Williams", "Renault"],
-            "range": ["#dc0000", "#ff8000", "#1e3d8f", "#00d2be", "#005aff", "#FFD700"]
+            "domain": [
+              "Ferrari",
+              "McLaren",
+              "Red Bull",
+              "Mercedes",
+              "Williams",
+              "Renault",
+              "Brawn"
+            ],
+            "range": [
+              "#dc0000",
+              "#ff8000",
+              "#ffd700",
+              "#00d2be",
+              "#87CEEB",
+              "#ffffff",
+              "#ffffff"
+            ]
+          }
+        },
+        "opacity": {
+          "value": 0.5
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "shape": "square",
+        "filled": true,
+        "size": 90,
+        "opacity": 0.55
+      },
+      "encoding": {
+        "y": {
+          "field": "year",
+          "type": "ordinal",
+          "sort": "descending"
+        },
+        "x": {
+          "field": "grid_pos",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              22
+            ]
+          },
+          "axis": null
+        },
+        "color": {
+          "field": "name",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Ferrari",
+              "McLaren",
+              "Red Bull",
+              "Mercedes",
+              "Williams",
+              "Renault",
+              "Brawn"
+            ],
+            "range": [
+              "#dc0000",
+              "#ff8000",
+              "#ffd700",
+              "#00d2be",
+              "#87CEEB",
+              "#ffffff",
+              "#ffffff"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "shape": "circle",
+        "filled": true,
+        "size": 110
+      },
+      "encoding": {
+        "y": {
+          "field": "year",
+          "type": "ordinal",
+          "sort": "descending"
+        },
+        "x": {
+          "value": 0
+        },
+        "color": {
+          "field": "name",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Ferrari",
+              "McLaren",
+              "Red Bull",
+              "Mercedes",
+              "Williams",
+              "Renault",
+              "Brawn"
+            ],
+            "range": [
+              "#dc0000",
+              "#ff8000",
+              "#ffd700",
+              "#00d2be",
+              "#87CEEB",
+              "#ffffff",
+              "#ffffff"
+            ]
           },
           "legend": {
             "title": "Constructor",
@@ -77,20 +245,32 @@
             "columns": 3
           }
         },
-        "opacity": {"value": 0.3},
         "tooltip": [
-          {"field": "year", "title": "Year"},
-          {"field": "driver_name", "title": "Winner"},
-          {"field": "name", "title": "Constructor"}
+          {
+            "field": "year",
+            "title": "Year"
+          },
+          {
+            "field": "driver_name",
+            "title": "Winner"
+          },
+          {
+            "field": "name",
+            "title": "Constructor"
+          },
+          {
+            "field": "grid_pos",
+            "title": "Started from grid"
+          }
         ]
       }
     },
     {
       "mark": {
         "type": "text",
-        "align": "left",
-        "dx": 8,
-        "fontSize": 12,
+        "align": "right",
+        "dx": -6,
+        "fontSize": 11,
         "fontWeight": "bold"
       },
       "encoding": {
@@ -99,14 +279,34 @@
           "type": "ordinal",
           "sort": "descending"
         },
-        "x": {"value": 0},
-        "text": {"field": "driver_name"},
+        "x": {
+          "value": 700
+        },
+        "text": {
+          "field": "driver_constructor"
+        },
         "color": {
           "field": "name",
           "type": "nominal",
           "scale": {
-            "domain": ["Ferrari", "McLaren", "Red Bull", "Mercedes", "Williams", "Renault"],
-            "range": ["#dc0000", "#ff8000", "#1e3d8f", "#00d2be", "#005aff", "#FFD700"]
+            "domain": [
+              "Ferrari",
+              "McLaren",
+              "Red Bull",
+              "Mercedes",
+              "Williams",
+              "Renault",
+              "Brawn"
+            ],
+            "range": [
+              "#dc0000",
+              "#ff8000",
+              "#ffd700",
+              "#00d2be",
+              "#87CEEB",
+              "#ffffff",
+              "#ffffff"
+            ]
           }
         }
       }
@@ -114,10 +314,11 @@
     {
       "mark": {
         "type": "text",
-        "align": "right",
-        "dx": -8,
-        "fontSize": 11,
-        "opacity": 0.7
+        "align": "center",
+        "baseline": "bottom",
+        "dy": -4,
+        "fontSize": 10,
+        "fontWeight": "bold"
       },
       "encoding": {
         "y": {
@@ -125,11 +326,68 @@
           "type": "ordinal",
           "sort": "descending"
         },
-        "x": {"value": 700},
-        "text": {"field": "name"},
-        "color": {"value": "#888888"}
+        "x": {
+          "field": "grid_pos",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              22
+            ]
+          },
+          "axis": {
+            "title": "\u2190 Pole     Grid position \u2192",
+            "titleColor": "#888888",
+            "titleFontSize": 10,
+            "labelColor": "#777777",
+            "labelFontSize": 9,
+            "gridColor": "#1a1a2e",
+            "tickCount": 6,
+            "domain": false,
+            "orient": "top"
+          }
+        },
+        "text": {
+          "condition": {
+            "test": "datum.grid_pos > 1",
+            "field": "grid_pos"
+          },
+          "value": ""
+        },
+        "color": {
+          "field": "name",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Ferrari",
+              "McLaren",
+              "Red Bull",
+              "Mercedes",
+              "Williams",
+              "Renault",
+              "Brawn"
+            ],
+            "range": [
+              "#dc0000",
+              "#ff8000",
+              "#ffd700",
+              "#00d2be",
+              "#87CEEB",
+              "#ffffff",
+              "#ffffff"
+            ]
+          }
+        },
+        "opacity": {
+          "value": 0.9
+        }
       }
     }
   ],
-  "config": {"background": "#0d0d1a", "view": {"stroke": null}}
+  "config": {
+    "background": "#0d0d1a",
+    "view": {
+      "stroke": null
+    }
+  }
 }

@@ -3,36 +3,64 @@
   "width": 420,
   "height": 360,
   "projection": {
-    "type": "mercator",
-    "center": [10, 51],
-    "scale": 580
+    "type": "conicConformal",
+    "center": [
+      10,
+      47
+    ],
+    "parallels": [
+      44,
+      58
+    ],
+    "scale": 779
   },
   "layer": [
     {
       "data": {
         "url": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json",
-        "format": {"type": "topojson", "feature": "countries"}
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
       },
       "mark": {
         "type": "geoshape",
         "fill": "#1a1a2e",
-        "stroke": "#333355",
-        "strokeWidth": 0.5
+        "stroke": "#2a2a4a",
+        "strokeWidth": 0.4
       }
     },
     {
-      "data": {"url": "https://kbeh0007.github.io/A2/data/races.csv"},
+      "data": {
+        "url": "https://kbeh0007.github.io/A2/data/races.csv"
+      },
       "transform": [
         {
-          "aggregate": [{"op": "count", "as": "num_races"}],
-          "groupby": ["circuitId"]
+          "aggregate": [
+            {
+              "op": "count",
+              "as": "num_races"
+            }
+          ],
+          "groupby": [
+            "circuitId"
+          ]
         },
         {
           "lookup": "circuitId",
           "from": {
-            "data": {"url": "https://kbeh0007.github.io/A2/data/circuits.csv"},
+            "data": {
+              "url": "https://kbeh0007.github.io/A2/data/circuits.csv"
+            },
             "key": "circuitId",
-            "fields": ["name", "location", "country", "lat", "lng", "circuitId"]
+            "fields": [
+              "name",
+              "location",
+              "country",
+              "lat",
+              "lng",
+              "circuitId"
+            ]
           }
         },
         {
@@ -42,66 +70,155 @@
       "mark": {
         "type": "point",
         "shape": "triangle-down",
-        "opacity": 0.9,
+        "opacity": 0.85,
         "strokeWidth": 0,
         "filled": true
       },
       "encoding": {
-        "longitude": {"field": "lng", "type": "quantitative"},
-        "latitude": {"field": "lat", "type": "quantitative"},
+        "longitude": {
+          "field": "lng",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
         "size": {
           "field": "num_races",
           "type": "quantitative",
-          "scale": {"range": [40, 350]},
+          "scale": {
+            "type": "sqrt",
+            "range": [
+              4,
+              220
+            ]
+          },
           "legend": null
         },
         "color": {
           "field": "num_races",
           "type": "quantitative",
-          "scale": {"domain": [1, 70], "range": ["#ff9999", "#cc0000"]},
+          "scale": {
+            "domain": [
+              0,
+              70
+            ],
+            "range": [
+              "#fff0f0",
+              "#ffaaaa",
+              "#ff4444",
+              "#cc0000",
+              "#7a0000"
+            ]
+          },
+          "legend": null
+        },
+        "stroke": {
+          "field": "num_races",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              70
+            ],
+            "range": [
+              "#ffaaaa",
+              "#ff4444",
+              "#cc0000",
+              "#880000",
+              "#440000"
+            ]
+          },
           "legend": null
         },
         "tooltip": [
-          {"field": "name", "title": "Circuit"},
-          {"field": "location", "title": "City"},
-          {"field": "country", "title": "Country"},
-          {"field": "num_races", "title": "Races hosted"}
+          {
+            "field": "name",
+            "title": "Circuit"
+          },
+          {
+            "field": "location",
+            "title": "City"
+          },
+          {
+            "field": "country",
+            "title": "Country"
+          },
+          {
+            "field": "num_races",
+            "title": "Races hosted"
+          }
         ]
       }
     },
     {
-      "data": {"url": "https://kbeh0007.github.io/A2/data/races.csv"},
+      "data": {
+        "url": "https://kbeh0007.github.io/A2/data/races.csv"
+      },
       "transform": [
         {
-          "aggregate": [{"op": "count", "as": "num_races"}],
-          "groupby": ["circuitId"]
+          "aggregate": [
+            {
+              "op": "count",
+              "as": "num_races"
+            }
+          ],
+          "groupby": [
+            "circuitId"
+          ]
         },
         {
           "lookup": "circuitId",
           "from": {
-            "data": {"url": "https://kbeh0007.github.io/A2/data/circuits.csv"},
+            "data": {
+              "url": "https://kbeh0007.github.io/A2/data/circuits.csv"
+            },
             "key": "circuitId",
-            "fields": ["name", "location", "country", "lat", "lng"]
+            "fields": [
+              "name",
+              "location",
+              "country",
+              "lat",
+              "lng"
+            ]
           }
         },
         {
           "filter": "datum.lng > -15 && datum.lng < 35 && datum.lat > 35 && datum.lat < 62"
         },
-        {"filter": "datum.num_races >= 50"}
+        {
+          "filter": "datum.num_races >= 50"
+        }
       ],
       "mark": {
         "type": "text",
-        "dy": -12,
-        "fontSize": 10,
+        "dy": 10,
+        "fontSize": 9,
         "fontWeight": "bold",
-        "color": "#ffffff"
+        "color": "#ffffff",
+        "baseline": "top",
+        "align": "center"
       },
       "encoding": {
-        "longitude": {"field": "lng", "type": "quantitative"},
-        "latitude": {"field": "lat", "type": "quantitative"},
-        "text": {"field": "location", "type": "nominal"}
+        "longitude": {
+          "field": "lng",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "location",
+          "type": "nominal"
+        }
       }
     }
   ],
-  "config": {"background": "#0d0d1a", "view": {"stroke": null}}
+  "config": {
+    "background": "#0d0d1a",
+    "view": {
+      "stroke": null
+    }
+  }
 }

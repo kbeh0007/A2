@@ -2,135 +2,286 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 680,
   "height": 450,
-  "projection": {"type": "equalEarth"},
+  "projection": {
+    "type": "equalEarth",
+    "scale": 164,
+    "center": [
+      15,
+      5
+    ]
+  },
   "layer": [
     {
       "data": {
         "url": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json",
-        "format": {"type": "topojson", "feature": "countries"}
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
       },
       "mark": {
         "type": "geoshape",
         "fill": "#1a1a2e",
-        "stroke": "#333355",
-        "strokeWidth": 0.5
+        "stroke": "#2a2a4a",
+        "strokeWidth": 0.4
       }
     },
     {
-      "data": {"url": "https://kbeh0007.github.io/A2/data/races.csv"},
+      "data": {
+        "url": "https://kbeh0007.github.io/A2/data/races.csv"
+      },
       "transform": [
         {
-          "aggregate": [{"op": "count", "as": "num_races"}],
-          "groupby": ["circuitId"]
+          "aggregate": [
+            {
+              "op": "count",
+              "as": "num_races"
+            }
+          ],
+          "groupby": [
+            "circuitId"
+          ]
         },
         {
           "lookup": "circuitId",
           "from": {
-            "data": {"url": "https://kbeh0007.github.io/A2/data/circuits.csv"},
+            "data": {
+              "url": "https://kbeh0007.github.io/A2/data/circuits.csv"
+            },
             "key": "circuitId",
-            "fields": ["name", "location", "country", "lat", "lng", "circuitId"]
+            "fields": [
+              "name",
+              "location",
+              "country",
+              "lat",
+              "lng",
+              "circuitId"
+            ]
           }
         },
-        {"filter": "datum.circuitId != 2"}
+        {
+          "filter": "datum.circuitId != 2"
+        }
       ],
       "mark": {
         "type": "point",
         "shape": "triangle-down",
-        "opacity": 0.9,
+        "opacity": 0.85,
         "strokeWidth": 0,
         "filled": true
       },
       "encoding": {
-        "longitude": {"field": "lng", "type": "quantitative"},
-        "latitude": {"field": "lat", "type": "quantitative"},
+        "longitude": {
+          "field": "lng",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
         "size": {
           "field": "num_races",
           "type": "quantitative",
-          "scale": {"range": [30, 200]},
+          "scale": {
+            "type": "sqrt",
+            "range": [
+              4,
+              220
+            ]
+          },
           "legend": null
         },
         "color": {
           "field": "num_races",
           "type": "quantitative",
           "scale": {
-            "domain": [1, 70],
-            "range": ["#ff9999", "#cc0000"]
+            "domain": [
+              0,
+              70
+            ],
+            "range": [
+              "#fff0f0",
+              "#ffaaaa",
+              "#ff4444",
+              "#cc0000",
+              "#7a0000"
+            ]
           },
           "legend": {
             "title": "Races hosted",
             "titleColor": "#aaaaaa",
             "labelColor": "#aaaaaa",
-            "orient": "bottom-left",
-            "gradientLength": 120
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 200,
+            "gradientThickness": 12,
+            "titleAnchor": "middle",
+            "values": [
+              0,
+              10,
+              20,
+              30,
+              40,
+              50,
+              60,
+              70
+            ]
           }
         },
+        "stroke": {
+          "field": "num_races",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              70
+            ],
+            "range": [
+              "#ffaaaa",
+              "#ff4444",
+              "#cc0000",
+              "#880000",
+              "#440000"
+            ]
+          },
+          "legend": null
+        },
         "tooltip": [
-          {"field": "name", "title": "Circuit"},
-          {"field": "location", "title": "Location"},
-          {"field": "country", "title": "Country"},
-          {"field": "num_races", "title": "Races hosted"}
+          {
+            "field": "name",
+            "title": "Circuit"
+          },
+          {
+            "field": "location",
+            "title": "Location"
+          },
+          {
+            "field": "country",
+            "title": "Country"
+          },
+          {
+            "field": "num_races",
+            "title": "Races hosted"
+          }
         ]
       }
     },
     {
-      "data": {"url": "https://kbeh0007.github.io/A2/data/races.csv"},
+      "data": {
+        "url": "https://kbeh0007.github.io/A2/data/races.csv"
+      },
       "transform": [
         {
-          "aggregate": [{"op": "count", "as": "num_races"}],
-          "groupby": ["circuitId"]
+          "aggregate": [
+            {
+              "op": "count",
+              "as": "num_races"
+            }
+          ],
+          "groupby": [
+            "circuitId"
+          ]
         },
         {
           "lookup": "circuitId",
           "from": {
-            "data": {"url": "https://kbeh0007.github.io/A2/data/circuits.csv"},
+            "data": {
+              "url": "https://kbeh0007.github.io/A2/data/circuits.csv"
+            },
             "key": "circuitId",
-            "fields": ["name", "location", "country", "lat", "lng", "circuitId"]
+            "fields": [
+              "name",
+              "location",
+              "country",
+              "lat",
+              "lng",
+              "circuitId"
+            ]
           }
         },
-        {"filter": "datum.circuitId == 2"}
+        {
+          "filter": "datum.circuitId == 2"
+        }
       ],
       "mark": {
         "type": "point",
-        "shape": "triangle-down",
+        "shape": "M0,-1L0.224,-0.309L0.951,-0.309L0.363,0.118L0.588,0.809L0,0.382L-0.588,0.809L-0.363,0.118L-0.951,-0.309L-0.224,-0.309Z",
         "opacity": 1,
         "strokeWidth": 1,
         "stroke": "#ffffff",
-        "filled": true
+        "filled": true,
+        "size": 162
       },
       "encoding": {
-        "longitude": {"field": "lng", "type": "quantitative"},
-        "latitude": {"field": "lat", "type": "quantitative"},
-        "size": {"value": 300},
-        "color": {"value": "#ffd700"},
+        "longitude": {
+          "field": "lng",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "size": {
+          "value": 220
+        },
+        "color": {
+          "value": "#ffd700"
+        },
         "tooltip": [
-          {"field": "name", "title": "Circuit"},
-          {"field": "location", "title": "Location"},
-          {"field": "country", "title": "Country"},
-          {"field": "num_races", "title": "Races hosted"}
+          {
+            "field": "name",
+            "title": "Circuit"
+          },
+          {
+            "field": "location",
+            "title": "Location"
+          },
+          {
+            "field": "country",
+            "title": "Country"
+          },
+          {
+            "field": "num_races",
+            "title": "Races hosted"
+          }
         ]
       }
     },
     {
-      "data": {"url": "https://kbeh0007.github.io/A2/data/circuits.csv"},
+      "data": {
+        "url": "https://kbeh0007.github.io/A2/data/circuits.csv"
+      },
       "transform": [
-        {"filter": "datum.circuitId == 2"}
+        {
+          "filter": "datum.circuitId == 2"
+        }
       ],
       "mark": {
         "type": "text",
         "dy": -16,
-        "fontSize": 12,
+        "fontSize": 11,
         "fontWeight": "bold",
         "color": "#ffd700"
       },
       "encoding": {
-        "longitude": {"field": "lng", "type": "quantitative"},
-        "latitude": {"field": "lat", "type": "quantitative"},
-        "text": {"value": "Sepang ★"}
+        "longitude": {
+          "field": "lng",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "value": "Sepang \u2605"
+        }
       }
     }
   ],
   "config": {
     "background": "#0d0d1a",
-    "view": {"stroke": null}
+    "view": {
+      "stroke": null
+    }
   }
 }

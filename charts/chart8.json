@@ -1,123 +1,560 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 430,
-  "height": 280,
-  "data": {"url": "https://kbeh0007.github.io/A2/data/f1_growth.csv"},
+  "data": {
+    "url": "https://kbeh0007.github.io/A2/data/f1_growth.csv"
+  },
   "transform": [
-    {"calculate": "toNumber(datum.year)", "as": "yr"},
-    {"calculate": "toNumber(datum.tv_viewers_millions)", "as": "viewers"},
-    {"calculate": "toNumber(datum.total_attendance_millions)", "as": "attendance"}
-  ],
-  "layer": [
     {
-      "mark": {"type": "rect", "opacity": 0.1, "color": "#ffd700"},
-      "data": {"values": [{"x1": 2007.5, "x2": 2017.8}]},
-      "encoding": {
-        "x": {
-          "field": "x1",
-          "type": "quantitative",
-          "scale": {"domain": [2007, 2026]}
-        },
-        "x2": {"field": "x2"},
-        "y": {"value": 0},
-        "y2": {"value": 280}
-      }
+      "calculate": "toNumber(datum.year)",
+      "as": "yr"
     },
     {
-      "mark": {
-        "type": "text",
-        "align": "center",
-        "baseline": "bottom",
-        "dy": -8,
-        "fontSize": 9,
-        "color": "#ffd700"
-      },
-      "data": {"values": [{"x": 2012.5, "y": 0}]},
-      "encoding": {
-        "x": {
-          "field": "x",
-          "type": "quantitative",
-          "scale": {"domain": [2007, 2026]}
-        },
-        "y": {"field": "y", "type": "quantitative"},
-        "text": {"value": "Malaysia on calendar"}
-      }
+      "calculate": "toNumber(datum.tv_viewers_millions)",
+      "as": "viewers"
     },
     {
-      "transform": [{"filter": "datum.viewers > 0 && datum.yr >= 2008"}],
-      "mark": {
-        "type": "line",
-        "color": "#cc0000",
-        "strokeWidth": 2.5,
-        "point": {"color": "#cc0000", "size": 40, "filled": true}
-      },
-      "encoding": {
-        "x": {
-          "field": "yr",
-          "type": "quantitative",
-          "title": "Year",
-          "scale": {"domain": [2007, 2026]},
-          "axis": {
-            "format": "d",
-            "labelColor": "#aaaaaa",
-            "titleColor": "#aaaaaa",
-            "gridColor": "#1a1a3a",
-            "tickCount": 10
-          }
-        },
-        "y": {
-          "field": "viewers",
-          "type": "quantitative",
-          "title": "TV viewers (millions)",
-          "scale": {"domain": [0, 700]},
-          "axis": {
-            "orient": "left",
-            "labelColor": "#cc0000",
-            "titleColor": "#cc0000",
-            "gridColor": "#1a1a3a"
-          }
-        },
-        "tooltip": [
-          {"field": "yr", "title": "Year", "format": "d"},
-          {"field": "viewers", "title": "TV viewers (millions)", "format": ".0f"}
-        ]
-      }
-    },
-    {
-      "transform": [
-        {"filter": "datum.attendance > 0.5 && datum.yr >= 2008"}
-      ],
-      "mark": {
-        "type": "line",
-        "color": "#ffd700",
-        "strokeWidth": 2.5,
-        "point": {"color": "#ffd700", "size": 40, "filled": true}
-      },
-      "encoding": {
-        "x": {
-          "field": "yr",
-          "type": "quantitative",
-          "scale": {"domain": [2007, 2026]}
-        },
-        "y": {
-          "field": "attendance",
-          "type": "quantitative",
-          "scale": {"domain": [0, 8]},
-          "axis": {
-            "orient": "right",
-            "labelColor": "#ffd700",
-            "titleColor": "#ffd700",
-            "title": "Attendance (millions)",
-            "gridColor": "#1a1a3a"
-          }
-        },
-        "tooltip": [
-          {"field": "yr", "title": "Year", "format": "d"},
-          {"field": "attendance", "title": "Attendance (millions)", "format": ".2f"}
-        ]
-      }
+      "calculate": "toNumber(datum.total_attendance_millions)",
+      "as": "attendance"
     }
   ],
-  "resolve": {"scale": {"y": "independent"}},
-  "config": {"background": "#0d0d1a", "view": {"stroke": null}}
+  "vconcat": [
+    {
+      "title": {
+        "text": [
+          "TV Viewers (millions)",
+          "\u2590  Malaysia on calendar  \u258c"
+        ],
+        "color": [
+          "#e0e0e0",
+          "#ffd700"
+        ],
+        "fontSize": [
+          13,
+          10
+        ],
+        "anchor": "start"
+      },
+      "width": 430,
+      "height": 150,
+      "layer": [
+        {
+          "mark": {
+            "type": "rect",
+            "opacity": 0.08,
+            "color": "#ffd700"
+          },
+          "data": {
+            "values": [
+              {
+                "x1": 2007.5,
+                "x2": 2017.8
+              }
+            ]
+          },
+          "encoding": {
+            "x": {
+              "field": "x1",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  2007,
+                  2026
+                ]
+              }
+            },
+            "x2": {
+              "field": "x2"
+            },
+            "y": {
+              "value": 0
+            },
+            "y2": {
+              "value": 150
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.viewers > 0 && datum.yr >= 2008"
+            }
+          ],
+          "mark": {
+            "type": "area",
+            "color": "#cc0000",
+            "fillOpacity": 0.15,
+            "line": {
+              "color": "#cc0000",
+              "strokeWidth": 2.2
+            }
+          },
+          "encoding": {
+            "x": {
+              "field": "yr",
+              "type": "quantitative",
+              "title": null,
+              "scale": {
+                "domain": [
+                  2007,
+                  2026
+                ]
+              },
+              "axis": {
+                "format": "d",
+                "labelColor": "#aaaaaa",
+                "gridColor": "#1a1a3a",
+                "tickCount": 10
+              }
+            },
+            "y": {
+              "field": "viewers",
+              "type": "quantitative",
+              "title": "Viewers (M)",
+              "scale": {
+                "domain": [
+                  0,
+                  700
+                ]
+              },
+              "axis": {
+                "labelColor": "#aaaaaa",
+                "titleColor": "#cc0000",
+                "gridColor": "#1a1a3a",
+                "titleFontSize": 10
+              }
+            },
+            "tooltip": [
+              {
+                "field": "yr",
+                "title": "Year",
+                "format": "d"
+              },
+              {
+                "field": "viewers",
+                "title": "TV viewers (M)",
+                "format": ".0f"
+              }
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "rule",
+            "color": "#ffd700",
+            "strokeWidth": 1.5,
+            "strokeDash": [
+              4,
+              3
+            ]
+          },
+          "data": {
+            "values": [
+              {
+                "x": 2017
+              }
+            ]
+          },
+          "encoding": {
+            "x": {
+              "field": "x",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  2007,
+                  2026
+                ]
+              }
+            },
+            "y": {
+              "value": 0
+            },
+            "y2": {
+              "value": 150
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 4,
+            "dy": 12,
+            "fontSize": 9,
+            "color": "#ffd700",
+            "fontStyle": "italic"
+          },
+          "data": {
+            "values": [
+              {
+                "x": 2017
+              }
+            ]
+          },
+          "encoding": {
+            "x": {
+              "field": "x",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  2007,
+                  2026
+                ]
+              }
+            },
+            "y": {
+              "value": 0
+            },
+            "text": {
+              "value": "Malaysia exits"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "rule",
+            "color": "#888888",
+            "strokeWidth": 1.2,
+            "strokeDash": [
+              3,
+              2
+            ]
+          },
+          "data": {
+            "values": [
+              {
+                "x": 2020
+              }
+            ]
+          },
+          "encoding": {
+            "x": {
+              "field": "x",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  2007,
+                  2026
+                ]
+              }
+            },
+            "y": {
+              "value": 0
+            },
+            "y2": {
+              "value": 150
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 4,
+            "fontSize": 9,
+            "color": "#aaaaaa",
+            "fontStyle": "italic",
+            "baseline": "top"
+          },
+          "data": {
+            "values": [
+              {
+                "x": 2020
+              }
+            ]
+          },
+          "encoding": {
+            "x": {
+              "field": "x",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  2007,
+                  2026
+                ]
+              }
+            },
+            "y": {
+              "value": 4
+            },
+            "text": {
+              "value": "COVID-19"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "text": [
+          "Race Attendance (millions)",
+          "\u2590  Malaysia on calendar  \u258c"
+        ],
+        "color": [
+          "#e0e0e0",
+          "#ffd700"
+        ],
+        "fontSize": [
+          13,
+          10
+        ],
+        "anchor": "start"
+      },
+      "width": 430,
+      "height": 150,
+      "layer": [
+        {
+          "mark": {
+            "type": "rect",
+            "opacity": 0.08,
+            "color": "#ffd700"
+          },
+          "data": {
+            "values": [
+              {
+                "x1": 2007.5,
+                "x2": 2017.8
+              }
+            ]
+          },
+          "encoding": {
+            "x": {
+              "field": "x1",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  2007,
+                  2026
+                ]
+              }
+            },
+            "x2": {
+              "field": "x2"
+            },
+            "y": {
+              "value": 0
+            },
+            "y2": {
+              "value": 150
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.attendance > 0.5 && datum.yr >= 2008"
+            }
+          ],
+          "mark": {
+            "type": "area",
+            "color": "#ffd700",
+            "fillOpacity": 0.15,
+            "line": {
+              "color": "#ffd700",
+              "strokeWidth": 2.2
+            }
+          },
+          "encoding": {
+            "x": {
+              "field": "yr",
+              "type": "quantitative",
+              "title": "Year",
+              "scale": {
+                "domain": [
+                  2007,
+                  2026
+                ]
+              },
+              "axis": {
+                "format": "d",
+                "labelColor": "#aaaaaa",
+                "titleColor": "#aaaaaa",
+                "gridColor": "#1a1a3a",
+                "tickCount": 10
+              }
+            },
+            "y": {
+              "field": "attendance",
+              "type": "quantitative",
+              "title": "Attendance (M)",
+              "scale": {
+                "domain": [
+                  0,
+                  8
+                ]
+              },
+              "axis": {
+                "labelColor": "#aaaaaa",
+                "titleColor": "#ffd700",
+                "gridColor": "#1a1a3a",
+                "titleFontSize": 10
+              }
+            },
+            "tooltip": [
+              {
+                "field": "yr",
+                "title": "Year",
+                "format": "d"
+              },
+              {
+                "field": "attendance",
+                "title": "Attendance (M)",
+                "format": ".2f"
+              }
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "rule",
+            "color": "#ffd700",
+            "strokeWidth": 1.5,
+            "strokeDash": [
+              4,
+              3
+            ]
+          },
+          "data": {
+            "values": [
+              {
+                "x": 2017
+              }
+            ]
+          },
+          "encoding": {
+            "x": {
+              "field": "x",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  2007,
+                  2026
+                ]
+              }
+            },
+            "y": {
+              "value": 0
+            },
+            "y2": {
+              "value": 150
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 4,
+            "dy": 12,
+            "fontSize": 9,
+            "color": "#ffd700",
+            "fontStyle": "italic"
+          },
+          "data": {
+            "values": [
+              {
+                "x": 2017
+              }
+            ]
+          },
+          "encoding": {
+            "x": {
+              "field": "x",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  2007,
+                  2026
+                ]
+              }
+            },
+            "y": {
+              "value": 0
+            },
+            "text": {
+              "value": "Malaysia exits"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "rule",
+            "color": "#888888",
+            "strokeWidth": 1.2,
+            "strokeDash": [
+              3,
+              2
+            ]
+          },
+          "data": {
+            "values": [
+              {
+                "x": 2020
+              }
+            ]
+          },
+          "encoding": {
+            "x": {
+              "field": "x",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  2007,
+                  2026
+                ]
+              }
+            },
+            "y": {
+              "value": 0
+            },
+            "y2": {
+              "value": 150
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 4,
+            "fontSize": 9,
+            "color": "#aaaaaa",
+            "fontStyle": "italic",
+            "baseline": "top"
+          },
+          "data": {
+            "values": [
+              {
+                "x": 2020
+              }
+            ]
+          },
+          "encoding": {
+            "x": {
+              "field": "x",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  2007,
+                  2026
+                ]
+              }
+            },
+            "y": {
+              "value": 4
+            },
+            "text": {
+              "value": "COVID-19"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "spacing": 20,
+  "config": {
+    "background": "#0d0d1a",
+    "view": {
+      "stroke": null
+    }
+  }
 }

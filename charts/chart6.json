@@ -1,42 +1,282 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 440,
-  "height": 300,
-  "data": {"url": "https://kbeh0007.github.io/A2/data/qualifying.csv"},
+  "height": 440,
+  "data": {
+    "url": "https://kbeh0007.github.io/A2/data/qualifying.csv"
+  },
   "transform": [
-    {"filter": "datum.q1 !== '\\N' && datum.q1 !== ''"},
+    {
+      "filter": "datum.q1 !== '\\N' && datum.q1 !== ''"
+    },
     {
       "lookup": "raceId",
       "from": {
-        "data": {"url": "https://kbeh0007.github.io/A2/data/races.csv"},
+        "data": {
+          "url": "https://kbeh0007.github.io/A2/data/races.csv"
+        },
         "key": "raceId",
-        "fields": ["year", "circuitId"]
+        "fields": [
+          "year",
+          "circuitId"
+        ]
       }
     },
-    {"filter": "datum.circuitId == 9"},
+    {
+      "filter": "datum.circuitId == 9"
+    },
     {
       "calculate": "toNumber(split(datum.q1, ':')[0]) * 60 + toNumber(split(datum.q1, ':')[1])",
       "as": "q1_seconds"
     },
-    {"filter": "datum.q1_seconds > 60 && datum.q1_seconds < 200"},
     {
-      "aggregate": [{"op": "min", "field": "q1_seconds", "as": "best_q1"}],
-      "groupby": ["year"]
+      "filter": "datum.q1_seconds > 60 && datum.q1_seconds < 200"
+    },
+    {
+      "aggregate": [
+        {
+          "op": "min",
+          "field": "q1_seconds",
+          "as": "best_q1"
+        }
+      ],
+      "groupby": [
+        "year"
+      ]
     }
   ],
   "layer": [
     {
       "mark": {
-        "type": "area",
-        "line": {"color": "#cc0000", "strokeWidth": 2},
+        "type": "rect",
+        "opacity": 0.06,
+        "color": "#4488ff"
+      },
+      "data": {
+        "values": [
+          {
+            "x1": 1995.5,
+            "x2": 2002.5
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x1",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1995,
+              2025
+            ]
+          }
+        },
+        "x2": {
+          "field": "x2"
+        },
+        "y": {
+          "value": 0
+        },
+        "y2": {
+          "value": 440
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rect",
+        "opacity": 0.06,
+        "color": "#ff4444"
+      },
+      "data": {
+        "values": [
+          {
+            "x1": 2002.5,
+            "x2": 2005.5
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x1",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1995,
+              2025
+            ]
+          }
+        },
+        "x2": {
+          "field": "x2"
+        },
+        "y": {
+          "value": 0
+        },
+        "y2": {
+          "value": 440
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rect",
+        "opacity": 0.06,
+        "color": "#44bb44"
+      },
+      "data": {
+        "values": [
+          {
+            "x1": 2013.5,
+            "x2": 2025
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x1",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1995,
+              2025
+            ]
+          }
+        },
+        "x2": {
+          "field": "x2"
+        },
+        "y": {
+          "value": 0
+        },
+        "y2": {
+          "value": 440
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "top",
+        "fontSize": 9,
+        "color": "#6699ff",
+        "fontStyle": "italic"
+      },
+      "data": {
+        "values": [
+          {
+            "x": 1999
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1995,
+              2025
+            ]
+          }
+        },
+        "y": {
+          "value": 18
+        },
+        "text": {
+          "value": "V10 era"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "top",
+        "fontSize": 9,
+        "color": "#ff7777",
+        "fontStyle": "italic"
+      },
+      "data": {
+        "values": [
+          {
+            "x": 2004
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1995,
+              2025
+            ]
+          }
+        },
+        "y": {
+          "value": 18
+        },
+        "text": {
+          "value": "Single-lap"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "top",
+        "fontSize": 9,
+        "color": "#66cc66",
+        "fontStyle": "italic"
+      },
+      "data": {
+        "values": [
+          {
+            "x": 2019
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1995,
+              2025
+            ]
+          }
+        },
+        "y": {
+          "value": 18
+        },
+        "text": {
+          "value": "Hybrid era"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
         "color": "#cc0000",
-        "fillOpacity": 0.15
+        "strokeWidth": 2.5,
+        "interpolate": "monotone"
       },
       "encoding": {
         "x": {
           "field": "year",
           "type": "quantitative",
           "title": "Year",
+          "scale": {
+            "domain": [
+              1995,
+              2025
+            ]
+          },
           "axis": {
             "format": "d",
             "labelColor": "#aaaaaa",
@@ -49,35 +289,126 @@
           "field": "best_q1",
           "type": "quantitative",
           "title": "Fastest Q1 time (seconds)",
-          "scale": {"zero": false},
+          "scale": {
+            "zero": false
+          },
           "axis": {
             "labelColor": "#aaaaaa",
             "titleColor": "#aaaaaa",
             "gridColor": "#222244"
           }
-        },
-        "tooltip": [
-          {"field": "year", "title": "Year", "format": "d"},
-          {"field": "best_q1", "title": "Best Q1 time (sec)", "format": ".3f"}
-        ]
+        }
       }
     },
     {
       "mark": {
         "type": "point",
         "filled": true,
-        "size": 50,
-        "color": "#cc0000"
+        "size": 55,
+        "color": "#cc0000",
+        "strokeWidth": 1,
+        "stroke": "#ff4444"
       },
       "encoding": {
-        "x": {"field": "year", "type": "quantitative"},
-        "y": {"field": "best_q1", "type": "quantitative"},
+        "x": {
+          "field": "year",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "best_q1",
+          "type": "quantitative"
+        },
         "tooltip": [
-          {"field": "year", "title": "Year", "format": "d"},
-          {"field": "best_q1", "title": "Best Q1 time (sec)", "format": ".3f"}
+          {
+            "field": "year",
+            "title": "Year",
+            "format": "d"
+          },
+          {
+            "field": "best_q1",
+            "title": "Best Q1 time (sec)",
+            "format": ".3f"
+          }
         ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#ffd700",
+        "strokeWidth": 1.5,
+        "strokeDash": [
+          3,
+          2
+        ]
+      },
+      "data": {
+        "values": [
+          {
+            "x": 2010
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1995,
+              2025
+            ]
+          }
+        },
+        "y": {
+          "value": 0
+        },
+        "y2": {
+          "value": 45
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dx": 0,
+        "fontSize": 10,
+        "fontWeight": "bold",
+        "color": "#ffd700",
+        "baseline": "bottom"
+      },
+      "data": {
+        "values": [
+          {
+            "x": 2010
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1995,
+              2025
+            ]
+          }
+        },
+        "y": {
+          "value": -6
+        },
+        "text": {
+          "value": "New 805m Arena section added"
+        }
       }
     }
   ],
-  "config": {"background": "#0d0d1a", "view": {"stroke": null}}
+  "config": {
+    "background": "#0d0d1a",
+    "view": {
+      "stroke": null
+    }
+  }
 }

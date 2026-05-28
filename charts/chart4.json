@@ -2,36 +2,106 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 680,
   "height": 450,
-  "projection": {"type": "equalEarth"},
+  "projection": {
+    "type": "equalEarth"
+  },
   "layer": [
     {
       "data": {
         "url": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json",
-        "format": {"type": "topojson", "feature": "countries"}
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
       },
       "mark": {
         "type": "geoshape",
         "fill": "#1a1a2e",
-        "stroke": "#333355",
-        "strokeWidth": 0.5
+        "stroke": "#2a2a4a",
+        "strokeWidth": 0.4
       }
     },
     {
       "data": {
         "values": [
-          {"country": "United Kingdom", "wins": 20},
-          {"country": "Germany", "wins": 12},
-          {"country": "Brazil", "wins": 8},
-          {"country": "France", "wins": 4},
-          {"country": "Finland", "wins": 4},
-          {"country": "Austria", "wins": 4},
-          {"country": "Australia", "wins": 4},
-          {"country": "Argentina", "wins": 2},
-          {"country": "Italy", "wins": 1},
-          {"country": "Canada", "wins": 1},
-          {"country": "South Africa", "wins": 1},
-          {"country": "Netherlands", "wins": 2},
-          {"country": "Spain", "wins": 2}
+          {
+            "country": "United Kingdom",
+            "wins": 20,
+            "lat": 55.4,
+            "lng": -3.4
+          },
+          {
+            "country": "Germany",
+            "wins": 12,
+            "lat": 51.2,
+            "lng": 10.4
+          },
+          {
+            "country": "Brazil",
+            "wins": 8,
+            "lat": -10.0,
+            "lng": -51.0
+          },
+          {
+            "country": "France",
+            "wins": 4,
+            "lat": 46.2,
+            "lng": 2.2
+          },
+          {
+            "country": "Finland",
+            "wins": 4,
+            "lat": 64.0,
+            "lng": 26.0
+          },
+          {
+            "country": "Austria",
+            "wins": 4,
+            "lat": 47.5,
+            "lng": 14.6
+          },
+          {
+            "country": "Australia",
+            "wins": 4,
+            "lat": -25.3,
+            "lng": 133.8
+          },
+          {
+            "country": "Argentina",
+            "wins": 2,
+            "lat": -34.0,
+            "lng": -64.0
+          },
+          {
+            "country": "Italy",
+            "wins": 1,
+            "lat": 42.5,
+            "lng": 12.5
+          },
+          {
+            "country": "Canada",
+            "wins": 1,
+            "lat": 56.1,
+            "lng": -106.3
+          },
+          {
+            "country": "South Africa",
+            "wins": 1,
+            "lat": -28.5,
+            "lng": 24.7
+          },
+          {
+            "country": "Netherlands",
+            "wins": 2,
+            "lat": 52.1,
+            "lng": 5.3
+          },
+          {
+            "country": "Spain",
+            "wins": 2,
+            "lat": 40.5,
+            "lng": -3.7
+          }
         ]
       },
       "transform": [
@@ -40,39 +110,110 @@
           "from": {
             "data": {
               "url": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json",
-              "format": {"type": "topojson", "feature": "countries"}
+              "format": {
+                "type": "topojson",
+                "feature": "countries"
+              }
             },
             "key": "properties.name",
-            "fields": ["type", "geometry", "properties"]
+            "fields": [
+              "type",
+              "geometry",
+              "properties"
+            ]
           }
         }
       ],
-      "mark": {"type": "geoshape"},
+      "mark": {
+        "type": "geoshape"
+      },
       "encoding": {
         "color": {
           "field": "wins",
           "type": "quantitative",
           "scale": {
-            "domain": [1, 20],
-            "range": ["#ff9999", "#cc0000"]
+            "domain": [
+              0,
+              20
+            ],
+            "range": [
+              "#fff0f0",
+              "#ffaaaa",
+              "#ff4444",
+              "#cc0000",
+              "#7a0000"
+            ]
           },
           "legend": {
             "title": "Championship wins",
             "titleColor": "#aaaaaa",
             "labelColor": "#aaaaaa",
             "orient": "bottom-left",
-            "gradientLength": 120
+            "gradientLength": 140,
+            "direction": "horizontal"
           }
         },
         "tooltip": [
-          {"field": "country", "title": "Country"},
-          {"field": "wins", "title": "Championship wins"}
+          {
+            "field": "country",
+            "title": "Country"
+          },
+          {
+            "field": "wins",
+            "title": "Championship wins"
+          }
         ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "label": "UK",
+            "wins": "20 titles",
+            "lat": 57.0,
+            "lng": -3.4
+          },
+          {
+            "label": "Germany",
+            "wins": "12 titles",
+            "lat": 53.5,
+            "lng": 10.4
+          },
+          {
+            "label": "Brazil",
+            "wins": "8 titles",
+            "lat": -8.0,
+            "lng": -51.0
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "dy": -2,
+        "fontSize": 10,
+        "fontWeight": "bold",
+        "color": "#ffffff"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lng",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
       }
     }
   ],
   "config": {
     "background": "#0d0d1a",
-    "view": {"stroke": null}
+    "view": {
+      "stroke": null
+    }
   }
 }

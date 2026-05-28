@@ -1,37 +1,142 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 560,
-  "height": 340,
-  "data": {"url": "https://kbeh0007.github.io/A2/data/driver_standings.csv"},
+  "height": 480,
+  "data": {
+    "url": "https://kbeh0007.github.io/A2/data/driver_standings.csv"
+  },
   "transform": [
     {
       "lookup": "raceId",
       "from": {
-        "data": {"url": "https://kbeh0007.github.io/A2/data/races.csv"},
+        "data": {
+          "url": "https://kbeh0007.github.io/A2/data/races.csv"
+        },
         "key": "raceId",
-        "fields": ["year", "round"]
+        "fields": [
+          "year",
+          "round"
+        ]
       }
     },
-    {"filter": "datum.year == 2021"},
+    {
+      "filter": "datum.year == 2021"
+    },
     {
       "lookup": "driverId",
       "from": {
-        "data": {"url": "https://kbeh0007.github.io/A2/data/drivers.csv"},
+        "data": {
+          "url": "https://kbeh0007.github.io/A2/data/drivers.csv"
+        },
         "key": "driverId",
-        "fields": ["surname"]
+        "fields": [
+          "surname"
+        ]
       }
     },
-    {"filter": "datum.position <= 6"}
+    {
+      "filter": "datum.position <= 6"
+    },
+    {
+      "calculate": "datum.surname == 'Hamilton' ? 1 : datum.surname == 'Verstappen' ? 2 : null",
+      "as": "is_main"
+    }
   ],
   "layer": [
     {
-      "mark": {"type": "line", "interpolate": "linear"},
+      "transform": [
+        {
+          "filter": "datum.surname == 'Hamilton'"
+        }
+      ],
+      "mark": {
+        "type": "area",
+        "opacity": 0.12,
+        "interpolate": "linear",
+        "color": "#00d2be"
+      },
+      "encoding": {
+        "x": {
+          "field": "round",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1,
+              22
+            ]
+          }
+        },
+        "y": {
+          "field": "position",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0.5,
+              7.5
+            ]
+          },
+          "stack": null
+        },
+        "y2": {
+          "value": 480
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.surname == 'Verstappen'"
+        }
+      ],
+      "mark": {
+        "type": "area",
+        "opacity": 0.12,
+        "interpolate": "linear",
+        "color": "#cc0000"
+      },
+      "encoding": {
+        "x": {
+          "field": "round",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1,
+              22
+            ]
+          }
+        },
+        "y": {
+          "field": "position",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0.5,
+              7.5
+            ]
+          },
+          "stack": null
+        },
+        "y2": {
+          "value": 480
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "interpolate": "linear"
+      },
       "encoding": {
         "x": {
           "field": "round",
           "type": "quantitative",
           "title": "Race round",
-          "scale": {"domain": [1, 22]},
+          "scale": {
+            "domain": [
+              1,
+              22
+            ]
+          },
           "axis": {
             "labelColor": "#aaaaaa",
             "titleColor": "#aaaaaa",
@@ -43,64 +148,126 @@
           "field": "position",
           "type": "quantitative",
           "title": "Championship position",
-          "scale": {"domain": [0.5, 7.5]},
+          "scale": {
+            "domain": [
+              0.5,
+              7.5
+            ]
+          },
           "axis": {
             "labelColor": "#aaaaaa",
             "titleColor": "#aaaaaa",
             "gridColor": "#1a1a3a",
-            "values": [1, 2, 3, 4, 5, 6, 7]
+            "values": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
           }
         },
         "color": {
           "field": "surname",
           "type": "nominal",
           "scale": {
-            "domain": ["Hamilton","Verstappen","Bottas","Perez","Norris","Leclerc"],
-            "range": ["#00d2be","#cc0000","#888899","#888899","#888899","#888899"]
+            "domain": [
+              "Hamilton",
+              "Verstappen",
+              "Bottas",
+              "Perez",
+              "Norris",
+              "Leclerc"
+            ],
+            "range": [
+              "#00d2be",
+              "#cc0000",
+              "#666688",
+              "#666688",
+              "#666688",
+              "#666688"
+            ]
           },
           "legend": null
         },
         "strokeWidth": {
           "condition": {
             "test": "datum.surname == 'Hamilton' || datum.surname == 'Verstappen'",
-            "value": 3
+            "value": 2.8
           },
-          "value": 1.5
+          "value": 1.2
         },
         "opacity": {
           "condition": {
             "test": "datum.surname == 'Hamilton' || datum.surname == 'Verstappen'",
             "value": 1
           },
-          "value": 0.45
+          "value": 0.3
         },
-        "detail": {"field": "surname", "type": "nominal"}
+        "detail": {
+          "field": "surname",
+          "type": "nominal"
+        }
       }
     },
     {
       "mark": {
         "type": "point",
         "filled": true,
-        "size": 60,
+        "size": 55,
         "opacity": 0
       },
       "encoding": {
-        "x": {"field": "round", "type": "quantitative"},
-        "y": {"field": "position", "type": "quantitative"},
+        "x": {
+          "field": "round",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "position",
+          "type": "quantitative"
+        },
         "color": {
           "field": "surname",
           "type": "nominal",
           "scale": {
-            "domain": ["Hamilton","Verstappen","Bottas","Perez","Norris","Leclerc"],
-            "range": ["#00d2be","#cc0000","#888899","#888899","#888899","#888899"]
+            "domain": [
+              "Hamilton",
+              "Verstappen",
+              "Bottas",
+              "Perez",
+              "Norris",
+              "Leclerc"
+            ],
+            "range": [
+              "#00d2be",
+              "#cc0000",
+              "#666688",
+              "#666688",
+              "#666688",
+              "#666688"
+            ]
           },
           "legend": null
         },
         "tooltip": [
-          {"field": "surname", "title": "Driver"},
-          {"field": "round", "title": "Round"},
-          {"field": "position", "title": "Championship position"},
-          {"field": "points", "title": "Points"}
+          {
+            "field": "surname",
+            "title": "Driver"
+          },
+          {
+            "field": "round",
+            "title": "Round"
+          },
+          {
+            "field": "position",
+            "title": "Championship position"
+          },
+          {
+            "field": "points",
+            "title": "Points"
+          }
         ]
       }
     },
@@ -114,11 +281,26 @@
         "fontWeight": "bold",
         "color": "#00d2be"
       },
-      "data": {"values": [{"x": 22, "y": 2}]},
+      "data": {
+        "values": [
+          {
+            "x": 22,
+            "y": 2
+          }
+        ]
+      },
       "encoding": {
-        "x": {"field": "x", "type": "quantitative"},
-        "y": {"field": "y", "type": "quantitative"},
-        "text": {"value": "Hamilton"}
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "value": "Hamilton"
+        }
       }
     },
     {
@@ -131,13 +313,99 @@
         "fontWeight": "bold",
         "color": "#cc0000"
       },
-      "data": {"values": [{"x": 22, "y": 1}]},
+      "data": {
+        "values": [
+          {
+            "x": 22,
+            "y": 1
+          }
+        ]
+      },
       "encoding": {
-        "x": {"field": "x", "type": "quantitative"},
-        "y": {"field": "y", "type": "quantitative"},
-        "text": {"value": "Verstappen"}
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "value": "Verstappen \u2713"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#ffd700",
+        "strokeWidth": 1,
+        "strokeDash": [
+          3,
+          3
+        ]
+      },
+      "data": {
+        "values": [
+          {
+            "x": 19,
+            "y1": 1,
+            "y2": 2
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y1",
+          "type": "quantitative"
+        },
+        "y2": {
+          "field": "y2"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 4,
+        "fontSize": 9,
+        "color": "#ffd700",
+        "fontStyle": "italic",
+        "fontWeight": "bold",
+        "baseline": "middle"
+      },
+      "data": {
+        "values": [
+          {
+            "x": 19,
+            "y": 1.5
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "value": "Lead swapped 3\u00d7"
+        }
       }
     }
   ],
-  "config": {"background": "#0d0d1a", "view": {"stroke": null}}
+  "config": {
+    "background": "#0d0d1a",
+    "view": {
+      "stroke": null
+    }
+  }
 }

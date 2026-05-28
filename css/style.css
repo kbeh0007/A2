@@ -1,35 +1,39 @@
-* {
-  box-sizing: border-box;
-}
+/* ============================================================
+   FIT2179 A2 — The World at Full Speed
+   Typography: Barlow Condensed (headings) + Barlow (body)
+   Both are geometric sans-serifs matching F1's own branding.
+   Layout: two/three column grid, consistent sight-lines at
+   left edge (24px padding) and right edge (max-width 1100px).
+   Dark figure-ground throughout (#0d0d1a base).
+   ============================================================ */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   font-family: 'Barlow', sans-serif;
   font-weight: 400;
-  margin: 0;
-  padding: 0;
   background-color: #0d0d1a;
-  color: #f0f0f0;
-  font-size: 15px;
-  line-height: 1.6;
+  color: #e0e0e0;
+  font-size: 15px;        /* ~11pt — body text norm per typography notes */
+  line-height: 1.75;      /* ~125% leading */
 }
 
-/* GRID SYSTEM */
+/* ── LAYOUT: max-width container, consistent left/right sight-lines ── */
 .section {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 36px 24px;
+  padding: 40px 24px;
 }
 
-.col-full {
-  width: 100%;
-}
-
+/* Two equal columns — course notes: equal column widths */
 .col-grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  gap: 36px;
   align-items: start;
 }
+
+
 
 .col-grid-3 {
   display: grid;
@@ -38,26 +42,27 @@ body {
   align-items: start;
 }
 
+/* 5:7 split — text column : chart column */
 .col-grid-text-chart {
   display: grid;
   grid-template-columns: 5fr 7fr;
-  gap: 32px;
+  gap: 36px;
   align-items: start;
 }
 
+/* 8:4 split — chart column : notes column */
 .col-grid-chart-notes {
   display: grid;
   grid-template-columns: 8fr 4fr;
-  gap: 32px;
+  gap: 36px;
   align-items: start;
 }
 
-/* HERO */
+/* ── HERO ── */
 .hero {
   background-color: #0d0d1a;
   border-bottom: 3px solid #ff1801;
-  color: white;
-  padding: 52px 40px 48px 40px;
+  padding: 52px 40px 44px 40px;
 }
 
 .hero-inner {
@@ -69,106 +74,112 @@ body {
   margin: 0 auto;
 }
 
-.hero-logo {
-  width: 120px;
-  height: auto;
-  flex-shrink: 0;
-}
-
-.hero-text {
-  text-align: left;
-}
+.hero-logo { width: 120px; height: auto; flex-shrink: 0; }
+.hero-text { text-align: left; }
 
 .hero h1 {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 56px;
+  font-size: 58px;
   font-weight: 700;
   color: #ffffff;
-  margin: 0 0 10px 0;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
-  line-height: 1.1;
+  line-height: 1.05;
+  margin-bottom: 10px;
 }
 
+/* Subtitle: 300-weight, low contrast — clearly subordinate to h1 */
 .subtitle {
   font-family: 'Barlow', sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 300;
   color: #aaaaaa;
-  margin: 0;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
 }
 
-/* TYPOGRAPHY */
+/* ── SECTION HEADINGS: typographic hierarchy ──
+   H2: all-caps condensed, red accent, left border = sight-line anchor
+   This creates the most visual weight below the hero. */
 .section h2 {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 30px;
-  font-weight: 600;
+  font-size: 26px;
+  font-weight: 700;
   color: #ff1801;
-  margin: 0 0 10px 0;
+  margin-top: 0;
+  margin-bottom: 12px;
   border-left: 4px solid #ff1801;
   padding-left: 12px;
   line-height: 1.2;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   text-transform: uppercase;
 }
 
+/* ── PULL-QUOTE: large light-weight intro statement per section ──
+   Per layout notes: visual centre + hierarchy. Places important
+   insight at the start of each section reading path. */
+.pull-quote {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: #cc0000;
+  font-style: italic;
+  line-height: 1.4;
+  margin-bottom: 14px;
+  padding-left: 16px;
+  border-left: 2px solid #440000;
+}
+
+/* ── BODY TEXT: 15px, #e0e0e0 on #0d0d1a = ~7:1 contrast (WCAG AA+)
+   max-width: 66ch ≈ 65 chars per line — typography notes readability rule */
 .section p {
   font-family: 'Barlow', sans-serif;
-  font-size: 22px;
+  font-size: 15px;
   font-weight: 400;
-  line-height: 1.7;
-  color: #cccccc;
-  margin: 0 0 12px 0;
-  max-width: 600px;
+  line-height: 1.75;
+  color: #e0e0e0;
+  margin-bottom: 10px;
+  max-width: 66ch;
 }
 
-.col-full p,
-.section > p {
-  max-width: 100%;
-}
-
+/* Full-width paragraphs override the 66ch cap */
+.col-full p, .section > p,
 .col-grid-text-chart .section-text p,
-.col-grid-chart-notes .section-notes p {
-  max-width: 100%;
-}
+.col-grid-chart-notes .section-notes p { max-width: 100%; }
 
-.hint {
+/* Bold inline emphasis — typographic weight contrast per course notes */
+.section p strong { font-weight: 600; color: #ffffff; }
+
+/* Italic for qualifications and technical terms */
+.section p em { font-style: italic; color: #cccccc; }
+
+/* ── HINT TEXT: clearly below body hierarchy, ~4.5:1 contrast ── */
+.hint, .hover-hint {
   font-family: 'Barlow', sans-serif;
   font-size: 12px;
   font-weight: 300;
-  color: #666666;
-  margin: 0 0 12px 0;
+  color: #888888;
   font-style: italic;
+  margin-bottom: 10px;
 }
 
-.hover-hint {
-  font-family: 'Barlow', sans-serif;
-  font-size: 13px;
-  font-weight: 300;
-  color: #666666;
-  font-style: italic;
-  margin: 0 0 12px 0;
-}
-
-/* STAT CARDS */
+/* ── STAT CARDS ── */
 .stat-row {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
-  margin-bottom: 0;
 }
 
 .stat-card {
   background: #141428;
-  border: 1px solid #cc0000;
+  border: 1px solid #330000;
+  border-top: 2px solid #cc0000;
   padding: 14px 10px;
   text-align: center;
 }
 
 .stat-card .stat-number {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 700;
   color: #ff1801;
   display: block;
@@ -180,32 +191,23 @@ body {
   font-family: 'Barlow', sans-serif;
   font-size: 10px;
   font-weight: 500;
-  color: #aaaaaa;
+  color: #888888;
   display: block;
-  margin-top: 4px;
+  margin-top: 5px;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
+  letter-spacing: 1px;
 }
 
-/* CHART CONTAINERS */
-
-.chart-panel {
-  background: #ffffff;
-  padding: 16px 16px 8px 16px;
-  display: inline-block;
-}
-
-.chart-center {
-  display: flex;
-  justify-content: center;
-}
+/* ── CHART AREA ── */
+.chart-panel { display: inline-block; }
+.chart-center { display: flex; justify-content: center; }
 
 .chart-question {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 600;
   color: #ffffff;
-  margin: 0 0 10px 0;
+  margin-bottom: 8px;
   line-height: 1.3;
   letter-spacing: 0.3px;
 }
@@ -217,9 +219,7 @@ body {
   width: 100%;
 }
 
-.chart-with-image > div {
-  flex-shrink: 0;
-}
+.chart-with-image > div { flex-shrink: 0; }
 
 .chart-side-image {
   min-width: 300px;
@@ -228,39 +228,34 @@ body {
   object-fit: contain;
   flex-shrink: 0;
   opacity: 0.9;
-  margin-left: -85px
+  margin-left: -85px;
 }
 
-/* DIVIDERS */
+/* ── DIVIDERS: subtle horizontal sight-line between sections ── */
 .divider {
   border: none;
   border-top: 1px solid #1a1a2e;
   margin: 0 auto;
   max-width: 1100px;
+  padding: 0;
 }
 
-/* WINNER NOTE */
+/* ── ANNOTATION BOX: left-rule accent, set apart from body text ── */
 .winner-note {
   margin-top: 20px;
-  padding: 14px 16px;
+  padding: 14px 18px;
   border-left: 3px solid #cc0000;
-  background: #110010;
+  background: #0e0008;
   font-family: 'Barlow', sans-serif;
   font-size: 14px;
-  font-weight: 400;
-  line-height: 1.7;
+  line-height: 1.75;
   color: #dddddd;
 }
 
-/* SEPANG NOTES */
-.sepang-notes {
-  padding-top: 8px;
-}
+/* ── SEPANG NOTES SIDEBAR ── */
+.sepang-notes { padding-top: 4px; }
 
-.note-item {
-  margin-bottom: 18px;
-  line-height: 1.6;
-}
+.note-item { margin-bottom: 18px; }
 
 .note-year {
   font-family: 'Barlow Condensed', sans-serif;
@@ -276,29 +271,33 @@ body {
 .note-text {
   font-family: 'Barlow', sans-serif;
   font-size: 13px;
-  font-weight: 400;
-  color: #bbbbbb;
-  line-height: 1.6;
+  color: #cccccc;
+  line-height: 1.65;
 }
 
-/* CHART SUBLABELS */
+/* ── CHART SUBLABELS ── */
 .chart-sublabel {
   font-family: 'Barlow', sans-serif;
   font-size: 12px;
-  font-weight: 400;
   color: #999999;
-  margin: 0 0 8px 0;
+  margin-bottom: 8px;
 }
 
-/* FOOTER */
+/* ── FOOTER: smallest text, lowest hierarchy, structured metadata ── */
 footer {
   text-align: center;
-  padding: 28px 20px;
+  padding: 28px 24px 36px 24px;
   font-family: 'Barlow', sans-serif;
   font-size: 11px;
   font-weight: 300;
-  color: #444;
+  color: #555555;
   border-top: 1px solid #1a1a2e;
-  margin-top: 0;
-  line-height: 1.8;
+  line-height: 1.9;
 }
+
+footer p {
+  text-align: center;
+  margin: 0 0 6px 0;
+}
+
+footer strong { color: #777777; font-weight: 500; }
