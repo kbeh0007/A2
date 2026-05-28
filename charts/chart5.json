@@ -72,9 +72,13 @@
   "layer": [
     {
       "mark": {
-        "type": "rect",
-        "opacity": 0.1,
-        "color": "#cc0000"
+        "type": "text",
+        "align": "center",
+        "baseline": "top",
+        "dy": 4,
+        "fontSize": 9,
+        "color": "#ff9999",
+        "fontStyle": "italic"
       },
       "data": {
         "values": [
@@ -91,16 +95,20 @@
         "y": {
           "value": 0
         },
-        "y2": {
-          "value": 340
+        "text": {
+          "value": "Schumacher era"
         }
       }
     },
     {
       "mark": {
-        "type": "rect",
-        "opacity": 0.08,
-        "color": "#00d2be"
+        "type": "text",
+        "align": "center",
+        "baseline": "top",
+        "dy": 4,
+        "fontSize": 9,
+        "color": "#66ddcc",
+        "fontStyle": "italic"
       },
       "data": {
         "values": [
@@ -117,8 +125,8 @@
         "y": {
           "value": 0
         },
-        "y2": {
-          "value": 340
+        "text": {
+          "value": "Hybrid era"
         }
       }
     },
