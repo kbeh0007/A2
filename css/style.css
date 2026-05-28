@@ -301,3 +301,17 @@ footer p {
 }
 
 footer strong { color: #777777; font-weight: 500; }
+
+/* Speed section: align charts to bottom of each column */
+.col-grid-2.align-chart-bottom > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.col-grid-2.align-chart-bottom > div > p {
+  flex: 0 0 auto;
+}
+
+.col-grid-2.align-chart-bottom > div > div[id] {
+  margin-top: auto;  /* pushes chart to bottom, text stays at top */
+}
