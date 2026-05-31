@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 500,
+  "width": 480,
   "height": 500,
   "data": {
     "url": "https://kbeh0007.github.io/A2/data/qualifying.csv"
