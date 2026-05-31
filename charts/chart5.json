@@ -107,7 +107,7 @@
         "baseline": "top",
         "dy": 4,
         "fontSize": 9,
-        "color": "#1a6644",
+        "color": "#00d2be",
         "fontStyle": "italic"
       },
       "data": {
@@ -137,7 +137,7 @@
         "baseline": "bottom",
         "dy": -12,
         "fontSize": 9,
-        "color": "#1a6644",
+        "color": "#00d2be",
         "fontStyle": "italic"
       },
       "data": {
@@ -170,8 +170,8 @@
           "type": "ordinal",
           "title": "Decade",
           "axis": {
-            "labelColor": "#333333",
-            "titleColor": "#555555",
+            "labelColor": "#cccccc",
+            "titleColor": "#888888",
             "labelFontSize": 11,
             "labelExpr": "datum.value + 's'"
           }
@@ -186,7 +186,7 @@
             "order": "descending"
           },
           "axis": {
-            "labelColor": "#222222",
+            "labelColor": "#cccccc",
             "labelFontSize": 11,
             "labels": true,
             "title": null
@@ -210,8 +210,8 @@
           },
           "legend": {
             "title": "Race wins",
-            "titleColor": "#333333",
-            "labelColor": "#333333",
+            "titleColor": "#aaaaaa",
+            "labelColor": "#aaaaaa",
             "orient": "right",
             "gradientLength": 150,
             "values": [
@@ -277,9 +277,9 @@
     }
   ],
   "config": {
-    "background": "#ffffff",
+    "background": "#0d0d1a",
     "view": {
-      "stroke": "#dddddd"
+      "stroke": "#333355"
     }
   }
 }
