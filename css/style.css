@@ -199,7 +199,7 @@ body {
 }
 
 /* ── CHART AREA ── */
-.chart-panel { display: inline-block; background: #111124; border-radius: 4px; padding: 4px; }
+.chart-panel { display: inline-block; }
 .chart-center { display: flex; justify-content: center; }
 
 .chart-question {
