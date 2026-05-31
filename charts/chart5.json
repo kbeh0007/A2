@@ -279,7 +279,7 @@
   "config": {
     "background": "#0d0d1a",
     "view": {
-      "stroke": "#333355"
+      "stroke": null
     }
   }
 }
