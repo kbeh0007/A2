@@ -14,7 +14,7 @@ body {
   font-weight: 400;
   background-color: #0d0d1a;
   color: #e0e0e0;
-  font-size: 15px;        /* ~11pt — body text norm per typography notes */
+  font-size: 16px;        /* ~12pt — improved readability per typography notes */
   line-height: 1.75;      /* ~125% leading */
 }
 
@@ -22,7 +22,7 @@ body {
 .section {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 40px 24px;
+  padding: 32px 24px;
 }
 
 /* Two equal columns — course notes: equal column widths */
@@ -62,7 +62,7 @@ body {
 .hero {
   background-color: #0d0d1a;
   border-bottom: 3px solid #ff1801;
-  padding: 52px 40px 44px 40px;
+  padding: 42px 40px 35px 40px;
 }
 
 .hero-inner {
@@ -74,7 +74,7 @@ body {
   margin: 0 auto;
 }
 
-.hero-logo { width: 120px; height: auto; flex-shrink: 0; }
+.hero-logo { width: 216px; height: auto; flex-shrink: 0; }
 .hero-text { text-align: left; }
 
 .hero h1 {
@@ -199,7 +199,7 @@ body {
 }
 
 /* ── CHART AREA ── */
-.chart-panel { display: inline-block; }
+.chart-panel { display: inline-block; background: #111124; border-radius: 4px; padding: 4px; }
 .chart-center { display: flex; justify-content: center; }
 
 .chart-question {
@@ -240,17 +240,7 @@ body {
   padding: 0;
 }
 
-/* ── ANNOTATION BOX: left-rule accent, set apart from body text ── */
-.winner-note {
-  margin-top: 20px;
-  padding: 14px 18px;
-  border-left: 3px solid #cc0000;
-  background: #0e0008;
-  font-family: 'Barlow', sans-serif;
-  font-size: 14px;
-  line-height: 1.75;
-  color: #dddddd;
-}
+
 
 /* ── SEPANG NOTES SIDEBAR ── */
 .sepang-notes { padding-top: 4px; }
@@ -314,4 +304,19 @@ footer strong { color: #777777; font-weight: 500; }
 
 .col-grid-2.align-chart-bottom > div > div[id] {
   margin-top: auto;  /* pushes chart to bottom, text stays at top */
+}
+
+/* Full-width text sections: cap line length and centre the block */
+.col-full p {
+  max-width: 66ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* White background panel for heatmap */
+.chart-panel-white {
+  background: #ffffff;
+  border-radius: 6px;
+  padding: 8px;
+  display: inline-block;
 }

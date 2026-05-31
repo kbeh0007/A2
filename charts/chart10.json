@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 560,
-  "height": 480,
+  "width": 620,
+  "height": 520,
   "data": {
     "url": "https://kbeh0007.github.io/A2/data/driver_standings.csv"
   },
@@ -184,10 +184,10 @@
             "range": [
               "#00d2be",
               "#cc0000",
-              "#666688",
-              "#666688",
-              "#666688",
-              "#666688"
+              "#ffffff",
+              "#ffffff",
+              "#ffffff",
+              "#ffffff"
             ]
           },
           "legend": null
@@ -243,10 +243,10 @@
             "range": [
               "#00d2be",
               "#cc0000",
-              "#666688",
-              "#666688",
-              "#666688",
-              "#666688"
+              "#ffffff",
+              "#ffffff",
+              "#ffffff",
+              "#ffffff"
             ]
           },
           "legend": null

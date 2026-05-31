@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 480,
-  "height": 340,
+  "width": 560,
+  "height": 380,
   "data": {
     "url": "https://kbeh0007.github.io/A2/data/results.csv"
   },
@@ -107,7 +107,7 @@
         "baseline": "top",
         "dy": 4,
         "fontSize": 9,
-        "color": "#66ddcc",
+        "color": "#1a6644",
         "fontStyle": "italic"
       },
       "data": {
@@ -137,7 +137,7 @@
         "baseline": "bottom",
         "dy": -12,
         "fontSize": 9,
-        "color": "#66ddcc",
+        "color": "#1a6644",
         "fontStyle": "italic"
       },
       "data": {
@@ -170,8 +170,8 @@
           "type": "ordinal",
           "title": "Decade",
           "axis": {
-            "labelColor": "#cccccc",
-            "titleColor": "#888888",
+            "labelColor": "#333333",
+            "titleColor": "#555555",
             "labelFontSize": 11,
             "labelExpr": "datum.value + 's'"
           }
@@ -186,8 +186,10 @@
             "order": "descending"
           },
           "axis": {
-            "labelColor": "#cccccc",
-            "labelFontSize": 11
+            "labelColor": "#222222",
+            "labelFontSize": 11,
+            "labels": true,
+            "title": null
           }
         },
         "color": {
@@ -199,17 +201,17 @@
               100
             ],
             "range": [
-              "#0d0d1a",
-              "#3a0a0a",
-              "#7a0000",
+              "#fff0f0",
+              "#ffaaaa",
+              "#ff4444",
               "#cc0000",
-              "#ff6644"
+              "#7a0000"
             ]
           },
           "legend": {
             "title": "Race wins",
-            "titleColor": "#aaaaaa",
-            "labelColor": "#aaaaaa",
+            "titleColor": "#333333",
+            "labelColor": "#333333",
             "orient": "right",
             "gradientLength": 150,
             "values": [
@@ -269,19 +271,15 @@
           "value": ""
         },
         "color": {
-          "condition": {
-            "test": "datum.wins >= 50",
-            "value": "#ffffff"
-          },
-          "value": "#ffaaaa"
+          "value": "#ffffff"
         }
       }
     }
   ],
   "config": {
-    "background": "#0d0d1a",
+    "background": "#ffffff",
     "view": {
-      "stroke": "#333355"
+      "stroke": "#dddddd"
     }
   }
 }

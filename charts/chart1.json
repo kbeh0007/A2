@@ -1,10 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 680,
-  "height": 450,
+  "width": 780,
+  "height": 500,
   "projection": {
     "type": "equalEarth",
-    "scale": 164,
+    "scale": 208,
     "center": [
       15,
       5
@@ -21,9 +21,9 @@
       },
       "mark": {
         "type": "geoshape",
-        "fill": "#1a1a2e",
-        "stroke": "#2a2a4a",
-        "strokeWidth": 0.4
+        "fill": "#6b9e6b",
+        "stroke": "#4a7a4a",
+        "strokeWidth": 0.5
       }
     },
     {
@@ -109,8 +109,8 @@
           },
           "legend": {
             "title": "Races hosted",
-            "titleColor": "#aaaaaa",
-            "labelColor": "#aaaaaa",
+            "titleColor": "#ffffff",
+            "labelColor": "#ffffff",
             "orient": "bottom",
             "direction": "horizontal",
             "gradientLength": 200,
@@ -279,7 +279,7 @@
     }
   ],
   "config": {
-    "background": "#0d0d1a",
+    "background": "#4a90c4",
     "view": {
       "stroke": null
     }

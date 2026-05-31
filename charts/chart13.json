@@ -1,0 +1,383 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 620,
+  "height": 300,
+  "title": {
+    "text": "Malaysia's Tourism Recovery \u2014 The Case to Return",
+    "color": "#e0e0e0",
+    "fontSize": 13,
+    "fontWeight": 600,
+    "anchor": "start"
+  },
+  "data": {
+    "url": "https://kbeh0007.github.io/A2/data/malaysia_tourism.csv"
+  },
+  "transform": [
+    {
+      "calculate": "toNumber(datum.year)",
+      "as": "yr"
+    },
+    {
+      "calculate": "toNumber(datum.receipts_usd_b)",
+      "as": "receipts"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "color": "#00d2be",
+        "fillOpacity": 0.15,
+        "line": {
+          "color": "#00d2be",
+          "strokeWidth": 2.2
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "yr",
+          "type": "quantitative",
+          "title": "Year",
+          "scale": {
+            "domain": [
+              1995,
+              2024
+            ]
+          },
+          "axis": {
+            "format": "d",
+            "labelColor": "#aaaaaa",
+            "titleColor": "#aaaaaa",
+            "gridColor": "#1a1a3a",
+            "tickCount": 10
+          }
+        },
+        "y": {
+          "field": "receipts",
+          "type": "quantitative",
+          "title": "Tourism receipts (USD billion)",
+          "axis": {
+            "labelColor": "#aaaaaa",
+            "titleColor": "#aaaaaa",
+            "gridColor": "#1a1a3a"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "yr",
+            "title": "Year",
+            "format": "d"
+          },
+          {
+            "field": "receipts",
+            "title": "Receipts (USD B)",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#ffd700",
+        "strokeWidth": 1.5,
+        "strokeDash": [
+          5,
+          3
+        ]
+      },
+      "data": {
+        "values": [
+          {
+            "y": 0.07
+          }
+        ]
+      },
+      "encoding": {
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              26
+            ]
+          }
+        },
+        "x": {
+          "value": 0
+        },
+        "x2": {
+          "value": 620
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 4,
+        "dy": -8,
+        "fontSize": 10,
+        "color": "#ffd700",
+        "fontStyle": "italic"
+      },
+      "data": {
+        "values": [
+          {
+            "x": 1995,
+            "y": 0.07
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1995,
+              2024
+            ]
+          }
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              26
+            ]
+          }
+        },
+        "text": {
+          "value": "F1 hosting fee \u2248 USD 0.07B/year"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#ffd700",
+        "strokeWidth": 1.5,
+        "strokeDash": [
+          4,
+          3
+        ]
+      },
+      "data": {
+        "values": [
+          {
+            "x": 2017
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1995,
+              2024
+            ]
+          }
+        },
+        "y": {
+          "value": 0
+        },
+        "y2": {
+          "value": 300
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 4,
+        "dy": 14,
+        "fontSize": 9,
+        "color": "#ffd700",
+        "fontStyle": "italic"
+      },
+      "data": {
+        "values": [
+          {
+            "x": 2017
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1995,
+              2024
+            ]
+          }
+        },
+        "y": {
+          "value": 0
+        },
+        "text": {
+          "value": "Malaysia exits F1"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#555577",
+        "strokeWidth": 1,
+        "strokeDash": [
+          3,
+          3
+        ]
+      },
+      "data": {
+        "values": [
+          {
+            "x": 2020
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1995,
+              2024
+            ]
+          }
+        },
+        "y": {
+          "value": 0
+        },
+        "y2": {
+          "value": 300
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -4,
+        "dy": 14,
+        "fontSize": 9,
+        "color": "#888888",
+        "fontStyle": "italic"
+      },
+      "data": {
+        "values": [
+          {
+            "x": 2020
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1995,
+              2024
+            ]
+          }
+        },
+        "y": {
+          "value": 0
+        },
+        "text": {
+          "value": "COVID-19"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -4,
+        "dy": -10,
+        "fontSize": 9,
+        "color": "#00d2be",
+        "fontStyle": "italic",
+        "fontWeight": "bold"
+      },
+      "data": {
+        "values": [
+          {
+            "x": 2024
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1995,
+              2024
+            ]
+          }
+        },
+        "y": {
+          "value": 10
+        },
+        "text": {
+          "value": "Fully recovered \u2713"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 4,
+        "dy": 30,
+        "fontSize": 9,
+        "color": "#ffd700",
+        "fontStyle": "italic"
+      },
+      "data": {
+        "values": [
+          {
+            "x": 2017
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1995,
+              2024
+            ]
+          }
+        },
+        "y": {
+          "value": 0
+        },
+        "text": {
+          "value": "Exited: low attendance"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": "#0d0d1a",
+    "view": {
+      "stroke": null
+    }
+  }
+}
