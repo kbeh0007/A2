@@ -346,10 +346,10 @@
           ],
           "mark": {
             "type": "area",
-            "color": "#ffd700",
+            "color": "#87CEEB",
             "fillOpacity": 0.15,
             "line": {
-              "color": "#ffd700",
+              "color": "#87CEEB",
               "strokeWidth": 2.2
             }
           },

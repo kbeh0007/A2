@@ -123,6 +123,42 @@
     },
     {
       "mark": {
+        "type": "rect",
+        "color": "#ffffff",
+        "opacity": 0.04
+      },
+      "data": {
+        "values": [
+          {
+            "y1": 2.5,
+            "y2": 7.5
+          }
+        ]
+      },
+      "encoding": {
+        "y": {
+          "field": "y1",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0.5,
+              7.5
+            ]
+          }
+        },
+        "y2": {
+          "field": "y2"
+        },
+        "x": {
+          "value": 0
+        },
+        "x2": {
+          "value": 620
+        }
+      }
+    },
+    {
+      "mark": {
         "type": "line",
         "interpolate": "linear"
       },
@@ -398,6 +434,50 @@
         },
         "text": {
           "value": "Lead swapped 3\u00d7"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -6,
+        "dy": 0,
+        "fontSize": 10,
+        "color": "#888888",
+        "fontStyle": "italic"
+      },
+      "data": {
+        "values": [
+          {
+            "x": 22,
+            "y": 3.0
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1,
+              22
+            ]
+          }
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0.5,
+              7.5
+            ]
+          }
+        },
+        "text": {
+          "value": "Other Drivers"
         }
       }
     }
