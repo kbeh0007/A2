@@ -45,7 +45,7 @@ body {
 /* 5:7 split — text column : chart column */
 .col-grid-text-chart {
   display: grid;
-  grid-template-columns: 5fr 7fr;
+  grid-template-columns: 4fr 8fr;
   gap: 36px;
   align-items: start;
 }

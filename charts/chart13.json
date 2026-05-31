@@ -195,8 +195,8 @@
     {
       "mark": {
         "type": "text",
-        "align": "left",
-        "dx": 4,
+        "align": "right",
+        "dx": -4,
         "dy": 14,
         "fontSize": 9,
         "color": "#ffd700",
@@ -267,11 +267,11 @@
     {
       "mark": {
         "type": "text",
-        "align": "right",
-        "dx": -4,
+        "align": "left",
+        "dx": 4,
         "dy": 14,
         "fontSize": 9,
-        "color": "#888888",
+        "color": "#aaaaaa",
         "fontStyle": "italic"
       },
       "data": {
@@ -334,42 +334,6 @@
         },
         "text": {
           "value": "Fully recovered \u2713"
-        }
-      }
-    },
-    {
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "dx": 4,
-        "dy": 30,
-        "fontSize": 9,
-        "color": "#ffd700",
-        "fontStyle": "italic"
-      },
-      "data": {
-        "values": [
-          {
-            "x": 2017
-          }
-        ]
-      },
-      "encoding": {
-        "x": {
-          "field": "x",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              1995,
-              2024
-            ]
-          }
-        },
-        "y": {
-          "value": 0
-        },
-        "text": {
-          "value": "Exited: low attendance"
         }
       }
     }
